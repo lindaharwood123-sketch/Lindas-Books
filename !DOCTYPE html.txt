@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Books</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 50px;
+            padding-bottom: 30px;
+            border-bottom: 3px solid #2c3e50;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+
+        .tagline {
+            font-size: 1.2em;
+            color: #7f8c8d;
+            font-style: italic;
+        }
+
+        .books-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 40px;
+        }
+
+        .book-card {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 30px;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .book-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        }
+
+        .book-cover {
+            width: 100%;
+            max-width: 200px;
+            height: 300px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            margin: 0 auto 20px;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2em;
+            font-weight: bold;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .book-title {
+            font-size: 1.5em;
+            color: #2c3e50;
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+
+        .book-description {
+            color: #555;
+            margin-bottom: 20px;
+            line-height: 1.8;
+        }
+
+        .buy-button {
+            display: inline-block;
+            background: #FF9900;
+            color: white;
+            padding: 12px 30px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background 0.3s ease;
+            box-shadow: 0 3px 10px rgba(255,153,0,0.3);
+        }
+
+        .buy-button:hover {
+            background: #e68a00;
+            box-shadow: 0 5px 15px rgba(255,153,0,0.4);
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 2px solid #ecf0f1;
+            color: #7f8c8d;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+            }
+
+            h1 {
+                font-size: 2em;
+            }
+
+            .books-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Your Name Here</h1>
+            <p class="tagline">Author • Storyteller • Dreamer</p>
+        </header>
+
+        <div class="books-grid">
+            <!-- Book 1 -->
+            <div class="book-card">
+                <div class="book-cover">
+                    Your Book Cover Here
+                </div>
+                <h2 class="book-title">Book Title One</h2>
+                <p class="book-description">
+                    A captivating description of your first book. Tell readers what makes this story special and why they'll love it. Keep it engaging and concise.
+                </p>
+                <a href="https://www.amazon.com/dp/YOUR-BOOK-ID" class="buy-button" target="_blank">Buy on Amazon</a>
+            </div>
+
+            <!-- Book 2 -->
+            <div class="book-card">
+                <div class="book-cover">
+                    Your Book Cover Here
+                </div>
+                <h2 class="book-title">Book Title Two</h2>
+                <p class="book-description">
+                    An intriguing description of your second book. Highlight what sets this one apart and entice potential readers with a glimpse of the adventure within.
+                </p>
+                <a href="https://www.amazon.com/dp/YOUR-BOOK-ID" class="buy-button" target="_blank">Buy on Amazon</a>
+            </div>
+
+            <!-- Book 3 -->
+            <div class="book-card">
+                <div class="book-cover">
+                    Your Book Cover Here
+                </div>
+                <h2 class="book-title">Book Title Three</h2>
+                <p class="book-description">
+                    A compelling description of your third book. Draw readers in with the promise of an unforgettable journey through your words.
+                </p>
+                <a href="https://www.amazon.com/dp/YOUR-BOOK-ID" class="buy-button" target="_blank">Buy on Amazon</a>
+            </div>
+        </div>
+
+        <footer>
+            <p>&copy; 2025 Your Name. All rights reserved.</p>
+        </footer>
+    </div>
+</body>
+</html>
