@@ -8,7 +8,6 @@
     <style>
         :root {
             --cream: #faf6f0;
-            --warm-white: #fff9f2;
             --ink: #1a1410;
             --charcoal: #2e2820;
             --gold: #b8882a;
@@ -21,14 +20,13 @@
 
         body {
             font-family: 'Raleway', sans-serif;
-            background-color: var(--cream);
+            background-color: var(--charcoal);
             color: var(--ink);
             min-height: 100vh;
         }
 
-        /* ── top bar ── */
         .top-bar {
-            background: var(--charcoal);
+            background: #1a1410;
             color: var(--border);
             text-align: center;
             padding: 10px 20px;
@@ -37,11 +35,10 @@
             text-transform: uppercase;
         }
 
-        /* ── hero ── */
         .hero {
             text-align: center;
-            padding: 80px 20px 60px;
-            position: relative;
+            padding: 70px 20px 55px;
+            background: var(--charcoal);
         }
 
         .hero::after {
@@ -54,42 +51,42 @@
         }
 
         .hero-eyebrow {
-            font-family: 'Raleway', sans-serif;
             font-size: 0.7em;
             letter-spacing: 0.25em;
             text-transform: uppercase;
             color: var(--gold);
-            margin-bottom: 20px;
+            margin-bottom: 18px;
+            opacity: 0;
+            animation: fadeUp 0.6s ease 0.1s forwards;
         }
 
         .hero h1 {
             font-family: 'Cormorant Garamond', serif;
-            font-size: clamp(2.8em, 6vw, 5em);
+            font-size: clamp(2.8em, 6vw, 4.8em);
             font-weight: 300;
-            color: var(--charcoal);
+            color: #f5ede0;
             line-height: 1.1;
-            margin-bottom: 18px;
-            letter-spacing: -0.01em;
+            margin-bottom: 16px;
+            opacity: 0;
+            animation: fadeUp 0.6s ease 0.2s forwards;
         }
 
-        .hero h1 em {
-            font-style: italic;
-            color: var(--gold);
-        }
+        .hero h1 em { font-style: italic; color: var(--gold-light); }
 
         .hero-sub {
-            font-size: 0.92em;
-            color: var(--muted);
-            max-width: 520px;
+            font-size: 0.9em;
+            color: #a09080;
+            max-width: 500px;
             margin: 0 auto 32px;
-            line-height: 1.7;
+            line-height: 1.75;
             font-weight: 300;
+            opacity: 0;
+            animation: fadeUp 0.6s ease 0.3s forwards;
         }
 
-        /* ── author cards ── */
         .authors-section {
-            padding: 60px 20px 100px;
-            max-width: 1100px;
+            padding: 50px 24px 90px;
+            max-width: 1200px;
             margin: 0 auto;
         }
 
@@ -98,121 +95,132 @@
             font-size: 0.68em;
             letter-spacing: 0.22em;
             text-transform: uppercase;
-            color: var(--muted);
-            margin-bottom: 50px;
+            color: #6a5f52;
+            margin-bottom: 36px;
         }
 
         .authors-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
         }
 
         .author-card {
-            background: var(--warm-white);
-            border: 1px solid var(--border);
-            border-radius: 4px;
-            padding: 48px 36px 40px;
-            text-align: center;
             position: relative;
-            transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
-            cursor: pointer;
-            text-decoration: none;
+            border-radius: 8px;
+            overflow: hidden;
             display: block;
-            color: inherit;
+            text-decoration: none;
+            color: white;
+            aspect-ratio: 1 / 1.6;
+            box-shadow: 0 12px 40px rgba(0,0,0,0.5);
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+            opacity: 0;
+            animation: fadeUp 0.7s ease forwards;
         }
 
-        .author-card::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; right: 0;
-            height: 3px;
-            background: var(--gold);
-            transform: scaleX(0);
-            transform-origin: left;
-            transition: transform 0.35s ease;
-        }
+        .author-card:nth-child(1) { animation-delay: 0.2s; }
+        .author-card:nth-child(2) { animation-delay: 0.35s; }
+        .author-card:nth-child(3) { animation-delay: 0.5s; }
 
         .author-card:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 20px 50px rgba(26,20,16,0.1);
-            border-color: var(--gold-light);
+            transform: translateY(-8px) scale(1.01);
+            box-shadow: 0 24px 60px rgba(0,0,0,0.65);
         }
 
-        .author-card:hover::before {
-            transform: scaleX(1);
+        .card-bg {
+            position: absolute;
+            inset: 0;
+            background-size: cover;
+            background-position: center top;
+            transition: transform 0.5s ease;
         }
 
-        .card-number {
+        .author-card:hover .card-bg { transform: scale(1.04); }
+
+        .card-bg-harwood { background-image: url('card-lm-harwood.jpg'); }
+        .card-bg-maree   { background-image: url('card-linda-maree.jpg'); }
+        .card-bg-scott   { background-image: url('card-david-scott.jpg'); }
+
+        .card-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(
+                to bottom,
+                rgba(10,6,4,0.55) 0%,
+                rgba(10,6,4,0.0) 35%,
+                rgba(10,6,4,0.0) 55%,
+                rgba(10,6,4,0.75) 80%,
+                rgba(10,6,4,0.92) 100%
+            );
+        }
+
+        .card-content {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 22px 22px 26px;
+        }
+
+        .card-name {
             font-family: 'Cormorant Garamond', serif;
-            font-size: 0.8em;
-            color: var(--gold);
-            letter-spacing: 0.12em;
-            margin-bottom: 24px;
-            font-style: italic;
-        }
-
-        .card-ornament {
-            width: 36px;
-            height: 1px;
-            background: var(--border);
-            margin: 0 auto 28px;
-        }
-
-        .author-name {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 2.0em;
+            font-size: clamp(1.4em, 2.5vw, 2em);
             font-weight: 600;
-            color: var(--charcoal);
-            line-height: 1.2;
-            margin-bottom: 10px;
+            color: #ffffff;
+            line-height: 1.1;
+            text-shadow: 0 2px 12px rgba(0,0,0,0.7);
         }
 
-        .author-genre {
-            font-size: 0.75em;
-            color: var(--gold);
-            letter-spacing: 0.18em;
+        .card-bottom {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .card-genre {
+            display: inline-block;
+            background: rgba(184,136,42,0.88);
+            color: #fff8ec;
+            font-size: 0.68em;
+            font-weight: 600;
+            letter-spacing: 0.14em;
             text-transform: uppercase;
-            font-weight: 500;
-            margin-bottom: 20px;
-        }
-
-        .card-divider {
-            width: 30px;
-            height: 1px;
-            background: var(--border);
-            margin: 0 auto 22px;
-        }
-
-        .author-bio {
-            font-size: 0.85em;
-            color: var(--muted);
-            line-height: 1.75;
-            margin-bottom: 34px;
-            font-weight: 300;
+            padding: 5px 12px;
+            border-radius: 2px;
+            align-self: flex-start;
         }
 
         .card-cta {
-            display: inline-block;
-            padding: 11px 28px;
-            border: 1.5px solid var(--gold);
-            color: var(--gold);
-            font-size: 0.7em;
-            letter-spacing: 0.18em;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: #f5ede0;
+            font-size: 0.72em;
+            letter-spacing: 0.16em;
             text-transform: uppercase;
-            font-weight: 600;
-            border-radius: 2px;
-            transition: background 0.25s ease, color 0.25s ease;
+            font-weight: 500;
+            border-bottom: 1px solid rgba(255,255,255,0.3);
+            padding-bottom: 3px;
+            align-self: flex-start;
+            transition: color 0.25s, border-color 0.25s;
         }
 
         .author-card:hover .card-cta {
-            background: var(--gold);
-            color: white;
+            color: var(--gold-light);
+            border-color: var(--gold-light);
         }
 
-        /* ── footer ── */
+        .card-cta::after {
+            content: '→';
+            transition: transform 0.25s ease;
+        }
+
+        .author-card:hover .card-cta::after { transform: translateX(4px); }
+
         footer {
-            background: var(--charcoal);
+            background: #1a1410;
             color: var(--muted);
             text-align: center;
             padding: 40px 20px;
@@ -220,46 +228,29 @@
             letter-spacing: 0.05em;
         }
 
-        footer a {
-            color: var(--gold-light);
-            text-decoration: none;
-        }
-
+        footer a { color: var(--gold-light); text-decoration: none; }
         footer a:hover { text-decoration: underline; }
 
         footer .footer-name {
             font-family: 'Cormorant Garamond', serif;
             font-size: 1.4em;
-            color: var(--border);
+            color: #d0c4b0;
             font-style: italic;
             margin-bottom: 12px;
         }
 
-        /* ── animations ── */
-        .author-card {
-            opacity: 0;
-            animation: fadeUp 0.6s ease forwards;
-        }
-        .author-card:nth-child(1) { animation-delay: 0.1s; }
-        .author-card:nth-child(2) { animation-delay: 0.25s; }
-        .author-card:nth-child(3) { animation-delay: 0.4s; }
-
         @keyframes fadeUp {
-            from { opacity: 0; transform: translateY(24px); }
+            from { opacity: 0; transform: translateY(22px); }
             to   { opacity: 1; transform: translateY(0); }
         }
 
-        .hero h1, .hero-eyebrow, .hero-sub {
-            opacity: 0;
-            animation: fadeUp 0.7s ease forwards;
-        }
-        .hero-eyebrow { animation-delay: 0s; }
-        .hero h1      { animation-delay: 0.12s; }
-        .hero-sub     { animation-delay: 0.22s; }
-
-        @media (max-width: 680px) {
-            .hero { padding: 56px 20px 48px; }
-            .authors-grid { grid-template-columns: 1fr; }
+        @media (max-width: 768px) {
+            .authors-grid {
+                grid-template-columns: 1fr;
+                max-width: 380px;
+                margin: 0 auto;
+            }
+            .author-card { aspect-ratio: 3 / 4; }
         }
     </style>
 </head>
@@ -277,37 +268,40 @@
     <p class="section-label">Choose your author</p>
     <div class="authors-grid">
 
-        <!-- Card 1: L.M. Harwood -->
         <a href="lm-harwood.html" class="author-card">
-            <p class="card-number">Author I</p>
-            <div class="card-ornament"></div>
-            <h2 class="author-name">L.M. Harwood</h2>
-            <p class="author-genre">Non-Fiction &amp; Business</p>
-            <div class="card-divider"></div>
-            <p class="author-bio">Practical guides, true stories and creative non-fiction that inform, inspire and challenge the way you see the world around you.</p>
-            <span class="card-cta">View Collection</span>
+            <div class="card-bg card-bg-harwood"></div>
+            <div class="card-overlay"></div>
+            <div class="card-content">
+                <h2 class="card-name">L.M. Harwood</h2>
+                <div class="card-bottom">
+                    <span class="card-genre">Non-Fiction &amp; Business</span>
+                    <span class="card-cta">View Collection</span>
+                </div>
+            </div>
         </a>
 
-        <!-- Card 2: Linda Maree -->
         <a href="linda-maree.html" class="author-card">
-            <p class="card-number">Author II</p>
-            <div class="card-ornament"></div>
-            <h2 class="author-name">Linda Maree</h2>
-            <p class="author-genre">Romance &amp; Children's Books</p>
-            <div class="card-divider"></div>
-            <p class="author-bio">Heartfelt romance fiction and enchanting children's stories — tales of love, friendship, and the magic found in everyday adventures.</p>
-            <span class="card-cta">View Collection</span>
+            <div class="card-bg card-bg-maree"></div>
+            <div class="card-overlay"></div>
+            <div class="card-content">
+                <h2 class="card-name">Linda Maree</h2>
+                <div class="card-bottom">
+                    <span class="card-genre">Romance &amp; Children's Books</span>
+                    <span class="card-cta">View Collection</span>
+                </div>
+            </div>
         </a>
 
-        <!-- Card 3: David P. Scott -->
         <a href="david-scott.html" class="author-card">
-            <p class="card-number">Author III</p>
-            <div class="card-ornament"></div>
-            <h2 class="author-name">David P. Scott</h2>
-            <p class="author-genre">Reimagined Classics</p>
-            <div class="card-divider"></div>
-            <p class="author-bio">Beloved literary classics brought boldly into the modern era — the same great stories, reimagined for today's readers.</p>
-            <span class="card-cta">View Collection</span>
+            <div class="card-bg card-bg-scott"></div>
+            <div class="card-overlay"></div>
+            <div class="card-content">
+                <h2 class="card-name">David P. Scott</h2>
+                <div class="card-bottom">
+                    <span class="card-genre">Reimagined Classics</span>
+                    <span class="card-cta">View Collection</span>
+                </div>
+            </div>
         </a>
 
     </div>
