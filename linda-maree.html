@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Linda Maree — Books</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Raleway:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --cream: #faf6f0;
+            --warm-white: #fff9f2;
+            --ink: #1a1410;
+            --charcoal: #2e2820;
+            --gold: #b8882a;
+            --gold-light: #d4a843;
+            --muted: #8a7d6e;
+            --border: #e0d5c5;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Raleway', sans-serif;
+            background-color: var(--cream);
+            color: var(--ink);
+            min-height: 100vh;
+        }
+
+        .top-bar {
+            background: var(--charcoal);
+            color: var(--border);
+            text-align: center;
+            padding: 10px 20px;
+            font-size: 0.72em;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .back-link {
+            color: var(--gold-light);
+            text-decoration: none;
+            font-size: 0.9em;
+            letter-spacing: 0.1em;
+        }
+        .back-link:hover { text-decoration: underline; }
+
+        .hero {
+            text-align: center;
+            padding: 70px 20px 50px;
+        }
+
+        .hero::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 2px;
+            background: var(--gold);
+            margin: 0 auto;
+        }
+
+        .hero-eyebrow {
+            font-size: 0.7em;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 16px;
+        }
+
+        .hero h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(2.4em, 5vw, 4em);
+            font-weight: 300;
+            color: var(--charcoal);
+            margin-bottom: 14px;
+        }
+
+        .hero h1 em { font-style: italic; color: var(--gold); }
+
+        .hero-sub {
+            font-size: 0.88em;
+            color: var(--muted);
+            max-width: 520px;
+            margin: 0 auto 28px;
+            line-height: 1.75;
+            font-weight: 300;
+        }
+
+        .books-section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 50px 20px 100px;
+        }
+
+        .section-label {
+            text-align: center;
+            font-size: 0.68em;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            color: var(--muted);
+            margin-bottom: 40px;
+        }
+
+        .books-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 28px;
+        }
+
+        .book-card {
+            background: var(--warm-white);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            padding: 28px 24px 26px;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .book-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 16px 40px rgba(26,20,16,0.1);
+        }
+
+        .book-card img {
+            width: 160px;
+            height: 240px;
+            object-fit: cover;
+            border-radius: 3px;
+            box-shadow: 0 6px 18px rgba(0,0,0,0.18);
+            margin-bottom: 20px;
+        }
+
+        .book-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.15em;
+            font-weight: 600;
+            color: var(--charcoal);
+            margin-bottom: 10px;
+            line-height: 1.3;
+        }
+
+        .book-desc {
+            font-size: 0.78em;
+            color: var(--muted);
+            line-height: 1.7;
+            margin-bottom: 18px;
+            font-weight: 300;
+            flex-grow: 1;
+        }
+
+        .buy-button {
+            display: inline-block;
+            background: #FF9900;
+            color: white;
+            padding: 10px 24px;
+            text-decoration: none;
+            border-radius: 3px;
+            font-size: 0.75em;
+            font-weight: 600;
+            letter-spacing: 0.06em;
+            transition: background 0.25s ease;
+            box-shadow: 0 3px 10px rgba(255,153,0,0.3);
+            margin-bottom: 10px;
+        }
+
+        .buy-button:hover { background: #e68a00; }
+
+        .also-on {
+            font-size: 0.72em;
+            color: var(--muted);
+            margin-top: 6px;
+            line-height: 1.8;
+        }
+
+        .also-on a { color: var(--charcoal); text-decoration: underline; }
+        .also-on a:hover { color: var(--gold); }
+
+        /* Coming soon placeholder */
+        .coming-soon {
+            text-align: center;
+            padding: 80px 20px;
+            color: var(--muted);
+        }
+
+        .coming-soon .cs-icon {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 4em;
+            font-style: italic;
+            color: var(--border);
+            line-height: 1;
+            margin-bottom: 20px;
+        }
+
+        .coming-soon h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.8em;
+            font-weight: 300;
+            color: var(--charcoal);
+            margin-bottom: 12px;
+        }
+
+        .coming-soon p {
+            font-size: 0.85em;
+            line-height: 1.8;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+        footer {
+            background: var(--charcoal);
+            color: var(--muted);
+            text-align: center;
+            padding: 40px 20px;
+            font-size: 0.78em;
+            letter-spacing: 0.05em;
+        }
+        footer a { color: var(--gold-light); text-decoration: none; }
+        footer a:hover { text-decoration: underline; }
+        footer .footer-name {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.4em;
+            color: var(--border);
+            font-style: italic;
+            margin-bottom: 12px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="top-bar">
+    <a href="index.html" class="back-link">← All Authors</a>
+    <span>Linda Maree · Romance &amp; Children's Books</span>
+</div>
+
+<header class="hero">
+    <p class="hero-eyebrow">Author Collection</p>
+    <h1><em>Linda</em> Maree</h1>
+    <p class="hero-sub">Heartfelt romance fiction and enchanting children's stories — tales of love, friendship, and the magic found in everyday adventures.</p>
+</header>
+
+<section class="books-section">
+    <p class="section-label">All Books</p>
+
+    <div class="books-grid">
+
+        <!-- ADD BOOKS HERE — copy and paste the block below for each book:
+
+        <div class="book-card">
+            <img src="YOUR-COVER-IMAGE.jpg" alt="Book Title">
+            <h2 class="book-title">Book Title Here</h2>
+            <p class="book-desc">Short description of the book goes here.</p>
+            <a href="https://www.amazon.com/dp/ASIN" class="buy-button" target="_blank">Buy on Amazon</a>
+            <p class="also-on">Also: <a href="https://www.amazon.co.uk/dp/ASIN" target="_blank">UK</a> | <a href="https://www.amazon.com.au/dp/ASIN" target="_blank">AU</a></p>
+        </div>
+
+        -->
+
+    </div>
+
+    <div class="coming-soon">
+        <div class="cs-icon">&ldquo;</div>
+        <h2>Books Coming Soon</h2>
+        <p>Linda Maree's collection will appear here. Add your book cards to this page when you're ready.</p>
+    </div>
+
+</section>
+
+<footer>
+    <div class="footer-name">Linda Maree</div>
+    <p>&copy; 2025 L.M. Harwood. All rights reserved.</p>
+    <p style="margin-top:8px"><a href="mailto:lindaharwood123@gmail.com">Contact Me</a></p>
+</footer>
+
+</body>
+</html>

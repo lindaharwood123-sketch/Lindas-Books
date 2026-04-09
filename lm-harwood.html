@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>L.M. Harwood — Books</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Raleway:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --cream: #faf6f0;
+            --warm-white: #fff9f2;
+            --ink: #1a1410;
+            --charcoal: #2e2820;
+            --gold: #b8882a;
+            --gold-light: #d4a843;
+            --muted: #8a7d6e;
+            --border: #e0d5c5;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Raleway', sans-serif;
+            background-color: var(--cream);
+            color: var(--ink);
+            min-height: 100vh;
+        }
+
+        .top-bar {
+            background: var(--charcoal);
+            color: var(--border);
+            text-align: center;
+            padding: 10px 20px;
+            font-size: 0.72em;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .back-link {
+            color: var(--gold-light);
+            text-decoration: none;
+            font-size: 0.9em;
+            letter-spacing: 0.1em;
+        }
+        .back-link:hover { text-decoration: underline; }
+
+        .hero {
+            text-align: center;
+            padding: 70px 20px 50px;
+        }
+
+        .hero::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 2px;
+            background: var(--gold);
+            margin: 0 auto;
+        }
+
+        .hero-eyebrow {
+            font-size: 0.7em;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 16px;
+        }
+
+        .hero h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(2.4em, 5vw, 4em);
+            font-weight: 300;
+            color: var(--charcoal);
+            margin-bottom: 14px;
+        }
+
+        .hero h1 em { font-style: italic; color: var(--gold); }
+
+        .hero-sub {
+            font-size: 0.88em;
+            color: var(--muted);
+            max-width: 560px;
+            margin: 0 auto 28px;
+            line-height: 1.75;
+            font-weight: 300;
+        }
+
+        /* ── grid ── */
+        .books-section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 50px 20px 100px;
+        }
+
+        .section-label {
+            text-align: center;
+            font-size: 0.68em;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            color: var(--muted);
+            margin-bottom: 40px;
+        }
+
+        .books-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 28px;
+        }
+
+        .book-card {
+            background: var(--warm-white);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            padding: 28px 24px 26px;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .book-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 16px 40px rgba(26,20,16,0.1);
+        }
+
+        .book-card img {
+            width: 160px;
+            height: 240px;
+            object-fit: cover;
+            border-radius: 3px;
+            box-shadow: 0 6px 18px rgba(0,0,0,0.18);
+            margin-bottom: 20px;
+        }
+
+        .book-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.15em;
+            font-weight: 600;
+            color: var(--charcoal);
+            margin-bottom: 10px;
+            line-height: 1.3;
+        }
+
+        .book-desc {
+            font-size: 0.78em;
+            color: var(--muted);
+            line-height: 1.7;
+            margin-bottom: 18px;
+            font-weight: 300;
+            flex-grow: 1;
+        }
+
+        .buy-button {
+            display: inline-block;
+            background: #FF9900;
+            color: white;
+            padding: 10px 24px;
+            text-decoration: none;
+            border-radius: 3px;
+            font-size: 0.75em;
+            font-weight: 600;
+            letter-spacing: 0.06em;
+            transition: background 0.25s ease, box-shadow 0.25s ease;
+            box-shadow: 0 3px 10px rgba(255,153,0,0.3);
+            margin-bottom: 10px;
+        }
+
+        .buy-button:hover {
+            background: #e68a00;
+            box-shadow: 0 5px 15px rgba(255,153,0,0.4);
+        }
+
+        .also-on {
+            font-size: 0.72em;
+            color: var(--muted);
+            margin-top: 6px;
+            line-height: 1.8;
+        }
+
+        .also-on a {
+            color: var(--charcoal);
+            text-decoration: underline;
+        }
+
+        .also-on a:hover { color: var(--gold); }
+
+        footer {
+            background: var(--charcoal);
+            color: var(--muted);
+            text-align: center;
+            padding: 40px 20px;
+            font-size: 0.78em;
+            letter-spacing: 0.05em;
+        }
+        footer a { color: var(--gold-light); text-decoration: none; }
+        footer a:hover { text-decoration: underline; }
+        footer .footer-name {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.4em;
+            color: var(--border);
+            font-style: italic;
+            margin-bottom: 12px;
+        }
+
+        @media (max-width: 600px) {
+            .books-grid { grid-template-columns: 1fr 1fr; gap: 16px; }
+            .book-card { padding: 18px 14px; }
+            .book-card img { width: 120px; height: 180px; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="top-bar">
+    <a href="index.html" class="back-link">← All Authors</a>
+    <span>L.M. Harwood · Non-Fiction &amp; Business</span>
+</div>
+
+<header class="hero">
+    <p class="hero-eyebrow">Author Collection</p>
+    <h1><em>L.M.</em> Harwood</h1>
+    <p class="hero-sub">L.M. Harwood crafts relatable books across genres: true stories, creative non-fiction, photo-based books, and practical guides.</p>
+</header>
+
+<section class="books-section">
+    <p class="section-label">All Books</p>
+    <div class="books-grid">
+
+        <!-- Where the Wild Belongs -->
+        <div class="book-card">
+            <img src="WTWCover.jpg" alt="Where the Wild Belongs">
+            <h2 class="book-title">Where the Wild Belongs</h2>
+            <p class="book-desc">A Heartwarming Small Town Romance about Second Chances and Belonging — A Standalone Novel</p>
+            <a href="https://www.amazon.com/dp/B0GQ2WKFSD" class="buy-button" target="_blank">Buy on Amazon</a>
+        </div>
+
+        <!-- Around the Solar System -->
+        <div class="book-card">
+            <img src="Cove cozy linda Maree.jpg" alt="Around the Solar System in 80 Days">
+            <h2 class="book-title">Around the Solar System in 80 Days</h2>
+            <p class="book-desc">A Cozy Sci-Fi Journey of Friendship, Discovery and Space Travel</p>
+            <a href="https://www.amazon.com/dp/B0GKMPPRB6" class="buy-button" target="_blank">Buy on Amazon</a>
+        </div>
+
+        <!-- If Only I Stayed -->
+        <div class="book-card">
+            <img src="If only I stayed.jpg" alt="If Only I Stayed">
+            <h2 class="book-title">If Only I Stayed</h2>
+            <p class="book-desc">A Heart-Wrenching Story of Love, Jealousy, Betrayal and Tragedy</p>
+            <a href="https://www.amazon.com/dp/B0GHNLRVT3" class="buy-button" target="_blank">Buy on Amazon</a>
+        </div>
+
+        <!-- Milky's World Adventures -->
+        <div class="book-card">
+            <img src="Milky world adventure.jpg" alt="Milky's World Adventures">
+            <h2 class="book-title">Milky's World Adventures</h2>
+            <p class="book-desc">The little dog who travelled the world to share love and friendship with other creatures</p>
+            <a href="https://www.amazon.com/dp/B0GNX5KF8Q" class="buy-button" target="_blank">Buy on Amazon</a>
+        </div>
+
+        <!-- Father Brooks Book 2 -->
+        <div class="book-card">
+            <img src="Final cover Book 2 Father Brooks.jpg" alt="Father Brooks Mystery Stories Book 2">
+            <h2 class="book-title">Father Brooks' Mystery Stories Book 2</h2>
+            <p class="book-desc">Classic Chesterton's Father Brown Mysteries re-imagined for the Modern Era: 15 Mysteries — all with a twist</p>
+            <a href="https://www.amazon.com/dp/B0G78MV3VG" class="buy-button" target="_blank">Buy on Amazon</a>
+            <p class="also-on">Also: <a href="https://www.amazon.co.uk/dp/B0G78MV3VG" target="_blank">UK</a> | <a href="https://www.amazon.es/dp/B0G78MV3VG" target="_blank">ES</a> | <a href="https://www.amazon.com.au/dp/B0G78MV3VG" target="_blank">AU</a> | <a href="https://www.amazon.de/dp/B0G78MV3VG" target="_blank">DE</a> | <a href="https://www.amazon.nl/dp/B0G78MV3VG" target="_blank">NL</a></p>
+        </div>
+
+        <!-- Sherlock Hayes Book 1 -->
+        <div class="book-card">
+            <img src="Book 1 Sherlock Book cover.jpg" alt="Sherlock Hayes Book 1">
+            <h2 class="book-title">The Adventures of Sherlock Hayes Book 1</h2>
+            <p class="book-desc">15 Original Sherlock Holmes Cases Reimagined for The Modern Era (Also available in German)</p>
+            <a href="https://www.amazon.com/dp/B0FTYLZTY2" class="buy-button" target="_blank">Buy on Amazon</a>
+            <p class="also-on">Also: <a href="https://www.amazon.co.uk/dp/B0FTYLZTY2" target="_blank">UK</a> | <a href="https://www.amazon.es/dp/B0FTYLZTY2" target="_blank">ES</a> | <a href="https://www.amazon.com.au/dp/B0FTYLZTY2" target="_blank">AU</a> | <a href="https://www.amazon.de/dp/B0FWD5RQ1Y" target="_blank">DE</a> | <a href="https://www.amazon.nl/dp/B0FTYLZTY2" target="_blank">NL</a></p>
+        </div>
+
+        <!-- Sherlock Hayes Book 2 -->
+        <div class="book-card">
+            <img src="Book 2 Sherlock Book cover.jpg" alt="Sherlock Hayes Book 2">
+            <h2 class="book-title">The Adventures of Sherlock Hayes Book 2</h2>
+            <p class="book-desc">15 Original Sherlock Holmes Cases Reimagined for The Modern Era (Also available in German)</p>
+            <a href="https://www.amazon.com/dp/B0G4XBMH87" class="buy-button" target="_blank">Buy on Amazon</a>
+            <p class="also-on">Also: <a href="https://www.amazon.co.uk/dp/B0G4XBMH87" target="_blank">UK</a> | <a href="https://www.amazon.es/dp/B0G4XBMH87" target="_blank">ES</a> | <a href="https://www.amazon.com.au/dp/B0G4XBMH87" target="_blank">AU</a> | <a href="https://www.amazon.de/dp/B0G4XBMH87" target="_blank">DE</a> | <a href="https://www.amazon.nl/dp/B0G4XBMH87" target="_blank">NL</a></p>
+        </div>
+
+        <!-- Ghost Stories -->
+        <div class="book-card">
+            <img src="Ghost final cover.jpg" alt="Ghost Stories in the Modern Era">
+            <h2 class="book-title">Ghost Stories in the Modern Era</h2>
+            <p class="book-desc">A Re-Creation based on the Stories of M.R. James — Ghost Stories of an Antiquary</p>
+            <a href="https://www.amazon.com/dp/B0FT3PHXQZ" class="buy-button" target="_blank">Buy on Amazon</a>
+            <p class="also-on">Also: <a href="https://www.amazon.co.uk/dp/B0FT31Q7H7" target="_blank">UK</a> | <a href="https://www.amazon.es/dp/B0FT31Q7H7" target="_blank">ES</a> | <a href="https://www.amazon.com.au/dp/B0FT31Q7H7" target="_blank">AU</a> | <a href="https://www.amazon.de/dp/B0G1BX9Z81" target="_blank">DE</a> | <a href="https://www.amazon.nl/dp/B0FT31Q7H7" target="_blank">NL</a></p>
+        </div>
+
+        <!-- Gertrude Bell -->
+        <div class="book-card">
+            <img src="Bell Final Cover.jpg" alt="The Forbidden Love Affair of Gertrude Bell">
+            <h2 class="book-title">The Forbidden Love Affair of Gertrude Bell</h2>
+            <p class="book-desc">Secret love letters of Romance, Passion and Longing of the woman who shaped the Middle East</p>
+            <a href="https://www.amazon.com/dp/B0FR1N6WCD" class="buy-button" target="_blank">Buy on Amazon</a>
+            <p class="also-on">Also: <a href="https://www.amazon.co.uk/dp/B0FR2YBBBF" target="_blank">UK</a> | <a href="https://www.amazon.es/dp/B0FR2YBBBF" target="_blank">ES</a> | <a href="https://www.amazon.com.au/dp/B0FR2YBBBF" target="_blank">AU</a> | <a href="https://www.amazon.de/dp/B0FR2YBBBF" target="_blank">DE</a> | <a href="https://www.amazon.nl/dp/B0FR2YBBBF" target="_blank">NL</a></p>
+        </div>
+
+        <!-- Long Road to Windmills -->
+        <div class="book-card">
+            <img src="Long Road Cover 2.jpg" alt="The Long Road to Windmills">
+            <h2 class="book-title">The Long Road to Windmills</h2>
+            <p class="book-desc">A Kurdish Girl Escapes Iraq and finds a way to the Netherlands (Also available in Dutch, German and Spanish)</p>
+            <a href="https://www.amazon.com/dp/B0F92MTCXC" class="buy-button" target="_blank">Buy on Amazon</a>
+            <p class="also-on">Also: <a href="https://www.amazon.co.uk/dp/B0F92WG6RL" target="_blank">UK</a> | <a href="https://www.amazon.es/dp/B0FPG2RXRR" target="_blank">ES</a> | <a href="https://www.amazon.com.au/dp/B0F92WG6RL" target="_blank">AU</a> | <a href="https://www.amazon.de/dp/B0FN7ZJSV9" target="_blank">DE</a> | <a href="https://www.amazon.nl/dp/B0FRXG4RFR" target="_blank">NL</a></p>
+        </div>
+
+        <!-- Milky Animal Adventure 1 -->
+        <div class="book-card">
+            <img src="Milky 1 English cover.jpg" alt="Milky's Amazing Animal Adventure Book 1" style="height:200px;">
+            <h2 class="book-title">Milky's Amazing Animal Adventure — Book 1</h2>
+            <p class="book-desc">A picture Book of Real Animals and Fun Facts (Also in Dutch, German and Spanish)</p>
+            <a href="https://www.amazon.com/dp/B0FK3GPGD6" class="buy-button" target="_blank">Buy on Amazon</a>
+            <p class="also-on">Also: <a href="https://www.amazon.co.uk/dp/B0FK1RVDWB" target="_blank">UK</a> | <a href="https://www.amazon.es/dp/B0FMF4FT3D" target="_blank">ES</a> | <a href="https://www.amazon.com.au/dp/B0FK1RVDWB" target="_blank">AU</a> | <a href="https://www.amazon.de/dp/B0FLWVKZJW" target="_blank">DE</a> | <a href="https://www.amazon.nl/dp/B0FL6MZB47" target="_blank">NL</a></p>
+        </div>
+
+        <!-- Milky Animal Adventure 2 -->
+        <div class="book-card">
+            <img src="Milky 2 English cover.jpg" alt="Milky's Amazing Animal Adventure Book 2" style="height:200px;">
+            <h2 class="book-title">Milky's Amazing Animal Adventure — Book 2</h2>
+            <p class="book-desc">A picture Book of Real Animals and Fun Facts</p>
+            <a href="https://www.amazon.com/dp/B0FL26LL2D" class="buy-button" target="_blank">Buy on Amazon</a>
+            <p class="also-on">Also: <a href="https://www.amazon.co.uk/dp/B0FKVG3QJQ" target="_blank">UK</a> | <a href="https://www.amazon.es/dp/B0FKVG3QJQ" target="_blank">ES</a> | <a href="https://www.amazon.com.au/dp/B0FKVG3QJQ" target="_blank">AU</a> | <a href="https://www.amazon.de/dp/B0FKVG3QJQ" target="_blank">DE</a> | <a href="https://www.amazon.nl/dp/B0FKVG3QJQ" target="_blank">NL</a></p>
+        </div>
+
+        <!-- Milky Animal Adventure 3 -->
+        <div class="book-card">
+            <img src="Milky 3 english cover.jpg" alt="Milky's Amazing Animal Adventure Book 3" style="height:200px;">
+            <h2 class="book-title">Milky's Amazing Animal Adventure — Book 3</h2>
+            <p class="book-desc">A picture Book of Real Animals and Fun Facts</p>
+            <a href="https://www.amazon.com/dp/B0FLVKMYHS" class="buy-button" target="_blank">Buy on Amazon</a>
+            <p class="also-on">Also: <a href="https://www.amazon.co.uk/dp/B0FLZJ2YCS" target="_blank">UK</a> | <a href="https://www.amazon.es/dp/B0FLVKMYHS" target="_blank">ES</a> | <a href="https://www.amazon.com.au/dp/B0FLZJ2YCS" target="_blank">AU</a> | <a href="https://www.amazon.de/dp/B0FLZJ2YCS" target="_blank">DE</a> | <a href="https://www.amazon.nl/dp/B0FLZJ2YCS" target="_blank">NL</a></p>
+        </div>
+
+        <!-- Milky Christmas -->
+        <div class="book-card">
+            <img src="XmasMilkycover.jpg" alt="Milky's Christmas Activity Book">
+            <h2 class="book-title">Milky's Christmas Activity Book</h2>
+            <p class="book-desc">Real Animals, Fun Facts, Short Stories, Word Search, Colouring pages and more (Also in German)</p>
+            <a href="https://www.amazon.com/dp/B0FRR44CRJ" class="buy-button" target="_blank">Buy on Amazon</a>
+            <p class="also-on">Also: <a href="https://www.amazon.co.uk/dp/B0FRR44CRJ" target="_blank">UK</a> | <a href="https://www.amazon.es/dp/B0FRR44CRJ" target="_blank">ES</a> | <a href="https://www.amazon.com.au/dp/B0FR1537PH" target="_blank">AU</a> | <a href="https://www.amazon.de/dp/B0FTWX179T" target="_blank">DE</a> | <a href="https://www.amazon.nl/dp/B0FRR44CRJ" target="_blank">NL</a></p>
+        </div>
+
+        <!-- Managers Playbook -->
+        <div class="book-card">
+            <img src="managers.jpg" alt="The Managers Playbook">
+            <h2 class="book-title">The Managers Playbook</h2>
+            <p class="book-desc">20 Essential skills to transform your team into high performers</p>
+            <a href="https://www.amazon.com/dp/B0FBX7MQSN" class="buy-button" target="_blank">Buy on Amazon</a>
+            <p class="also-on">Also: <a href="https://www.amazon.co.uk/dp/B0FC463BNC" target="_blank">UK</a> | <a href="https://www.amazon.es/dp/B0FBX7MQSN" target="_blank">ES</a> | <a href="https://www.amazon.com.au/dp/B0FC463BNC" target="_blank">AU</a> | <a href="https://www.amazon.de/dp/B0FC463BNC" target="_blank">DE</a> | <a href="https://www.amazon.nl/dp/B0FC463BNC" target="_blank">NL</a></p>
+        </div>
+
+        <!-- Burnout -->
+        <div class="book-card">
+            <img src="Burn Cover Amazon.jpg" alt="Burnout Recovery Handbook">
+            <h2 class="book-title">Burnout Recovery Handbook</h2>
+            <p class="book-desc">The Complete Guide to Workplace Stress, Mental Health and Resilience</p>
+            <a href="https://www.amazon.com/dp/B0FCSKPXT8" class="buy-button" target="_blank">Buy on Amazon</a>
+            <p class="also-on">Also: <a href="https://www.amazon.co.uk/dp/B0FCYBM369" target="_blank">UK</a> | <a href="https://www.amazon.es/dp/B0FCYBM369" target="_blank">ES</a> | <a href="https://www.amazon.com.au/dp/B0FCYBM369" target="_blank">AU</a> | <a href="https://www.amazon.de/dp/B0FCYBM369" target="_blank">DE</a> | <a href="https://www.amazon.nl/dp/B0FCYBM369" target="_blank">NL</a></p>
+        </div>
+
+        <!-- Who Owns Your Attention -->
+        <div class="book-card">
+            <img src="Attention Cover 1.jpg" alt="Who Owns Your Attention">
+            <h2 class="book-title">Who Owns Your Attention</h2>
+            <p class="book-desc">How Silicon Valley hijacked your mind and rewrote your future</p>
+            <a href="https://www.amazon.com/dp/B0FHG1BF3P" class="buy-button" target="_blank">Buy on Amazon</a>
+            <p class="also-on">Also: <a href="https://www.amazon.co.uk/dp/B0FHFWY8Z9" target="_blank">UK</a> | <a href="https://www.amazon.es/dp/B0FHG1BF3P" target="_blank">ES</a> | <a href="https://www.amazon.com.au/dp/B0FHFWY8Z9" target="_blank">AU</a> | <a href="https://www.amazon.de/dp/B0FHFWY8Z9" target="_blank">DE</a> | <a href="https://www.amazon.nl/dp/B0FHFWY8Z9" target="_blank">NL</a></p>
+        </div>
+
+        <!-- Who Owns Your Memory -->
+        <div class="book-card">
+            <img src="Memory.jpg" alt="Who Owns Your Memory">
+            <h2 class="book-title">Who Owns Your Memory</h2>
+            <p class="book-desc">Inside the race to hack, delete &amp; control the human mind</p>
+            <a href="https://www.amazon.com/dp/B0FD8ZMQB5" class="buy-button" target="_blank">Buy on Amazon</a>
+            <p class="also-on">Also: <a href="https://www.amazon.co.uk/dp/B0FDB17JSQ" target="_blank">UK</a> | <a href="https://www.amazon.es/dp/B0FD8ZMQB5" target="_blank">ES</a> | <a href="https://www.amazon.com.au/dp/B0FDB17JSQ" target="_blank">AU</a> | <a href="https://www.amazon.de/dp/B0FDB17JSQ" target="_blank">DE</a> | <a href="https://www.amazon.nl/dp/B0FDB17JSQ" target="_blank">NL</a></p>
+        </div>
+
+        <!-- Strength Training -->
+        <div class="book-card">
+            <img src="Dumbell Amazon final cover.jpg" alt="Strength Training for Women over 40">
+            <h2 class="book-title">Strength Training for Women over 40</h2>
+            <p class="book-desc">Get Strong, Fit &amp; Toned in 15 minutes using Dumbbells Only</p>
+            <a href="https://www.amazon.com/dp/B0FGW74YB3" class="buy-button" target="_blank">Buy on Amazon</a>
+            <p class="also-on">Also: <a href="https://www.amazon.co.uk/dp/B0FGW74YB3" target="_blank">UK</a> | <a href="https://www.amazon.es/dp/B0FGQTVG34" target="_blank">ES</a> | <a href="https://www.amazon.com.au/dp/B0FGW74YB3" target="_blank">AU</a> | <a href="https://www.amazon.de/dp/B0FGW74YB3" target="_blank">DE</a> | <a href="https://www.amazon.nl/dp/B0FGW74YB3" target="_blank">NL</a></p>
+        </div>
+
+        <!-- Elder Care -->
+        <div class="book-card">
+            <img src="Aged Cover Amazon.jpg" alt="Elder Care: Caring Together Case Studies">
+            <h2 class="book-title">Elder Care: Caring Together Case Studies</h2>
+            <p class="book-desc">A Story-Based guide to excellence for Caregivers of Aging Parents</p>
+            <a href="https://www.amazon.com/dp/B0FCR3NP5N" class="buy-button" target="_blank">Buy on Amazon</a>
+            <p class="also-on">Also: <a href="https://www.amazon.co.uk/dp/B0FCRZB3F7" target="_blank">UK</a> | <a href="https://www.amazon.es/dp/B0FCRZB3F7" target="_blank">ES</a> | <a href="https://www.amazon.com.au/dp/B0FCRZB3F7" target="_blank">AU</a> | <a href="https://www.amazon.de/dp/B0FCRZB3F7" target="_blank">DE</a> | <a href="https://www.amazon.nl/dp/B0FCRZB3F7" target="_blank">NL</a></p>
+        </div>
+
+        <!-- Tips for Tradies -->
+        <div class="book-card">
+            <img src="Tipsfortradies.jpg" alt="Tips for Tradies">
+            <h2 class="book-title">Tips for Tradies</h2>
+            <p class="book-desc">Tips for running a contractors business in Australia</p>
+            <a href="https://www.amazon.com/dp/B0FCFXXCHC" class="buy-button" target="_blank">Buy on Amazon</a>
+            <p class="also-on">Also: <a href="https://www.amazon.com.au/dp/B0FC3KPQPH" target="_blank">AU</a></p>
+        </div>
+
+        <!-- 30 Secrets -->
+        <div class="book-card">
+            <img src="30 secrets cover.jpg" alt="30 Secrets">
+            <h2 class="book-title">30 Secrets</h2>
+            <p class="book-desc">Secrets you need to learn about running your own contractors business</p>
+            <a href="https://www.amazon.com/dp/B0FC2YW2L2" class="buy-button" target="_blank">Buy on Amazon</a>
+            <p class="also-on">Also: <a href="https://www.amazon.co.uk/dp/B0FC61MJLF" target="_blank">UK</a> | <a href="https://www.amazon.es/dp/B0FC61MJLF" target="_blank">ES</a> | <a href="https://www.amazon.com.au/dp/B0FC61MJLF" target="_blank">AU</a> | <a href="https://www.amazon.de/dp/B0FC61MJLF" target="_blank">DE</a> | <a href="https://www.amazon.nl/dp/B0FC61MJLF" target="_blank">NL</a></p>
+        </div>
+
+        <!-- onethreesevensundays -->
+        <div class="book-card">
+            <img src="Amazononethreesevenbookcover-4.jpg" alt="onethreesevensundays" style="height:180px; width:240px;">
+            <h2 class="book-title">onethreesevensundays</h2>
+            <p class="book-desc">An Urban Coffee Table Book of Unique Photography</p>
+            <a href="https://www.amazon.com/dp/B0FJFF71Y3" class="buy-button" target="_blank">Buy on Amazon</a>
+            <p class="also-on">Also: <a href="https://www.amazon.co.uk/dp/B0FJFF71Y3" target="_blank">UK</a> | <a href="https://www.amazon.es/dp/B0FJFF71Y3" target="_blank">ES</a> | <a href="https://www.amazon.com.au/dp/B0FJFF71Y3" target="_blank">AU</a> | <a href="https://www.amazon.de/dp/B0FJFF71Y3" target="_blank">DE</a> | <a href="https://www.amazon.nl/dp/B0FJFF71Y3" target="_blank">NL</a></p>
+        </div>
+
+    </div>
+</section>
+
+<footer>
+    <div class="footer-name">L.M. Harwood</div>
+    <p>&copy; 2025 L.M. Harwood. All rights reserved.</p>
+    <p style="margin-top:8px"><a href="mailto:lindaharwood123@gmail.com">Contact Me</a></p>
+</footer>
+
+</body>
+</html>

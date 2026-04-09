@@ -3,526 +3,321 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Books</title>
+    <title>Author Collections</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Raleway:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        :root {
+            --cream: #faf6f0;
+            --warm-white: #fff9f2;
+            --ink: #1a1410;
+            --charcoal: #2e2820;
+            --gold: #b8882a;
+            --gold-light: #d4a843;
+            --muted: #8a7d6e;
+            --border: #e0d5c5;
         }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
-            font-family: 'Georgia', serif;
-            line-height: 1.6;
-            color: #333;
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            font-family: 'Raleway', sans-serif;
+            background-color: var(--cream);
+            color: var(--ink);
             min-height: 100vh;
-            padding: 20px;
         }
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            background: white;
-            padding: 40px;
-            border-radius: 10px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
-        }
-
-        header {
+        /* ── top bar ── */
+        .top-bar {
+            background: var(--charcoal);
+            color: var(--border);
             text-align: center;
-            margin-bottom: 50px;
-            padding-bottom: 30px;
-            border-bottom: 3px solid #2c3e50;
+            padding: 10px 20px;
+            font-size: 0.72em;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
         }
 
-        h1 {
-            font-size: 2.5em;
-            color: #2c3e50;
-            margin-bottom: 10px;
+        /* ── hero ── */
+        .hero {
+            text-align: center;
+            padding: 80px 20px 60px;
+            position: relative;
         }
-        h2 {
-            font-size: 1.0em;
-            color: #2c3e50;
-            margin-bottom: 10px;
+
+        .hero::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 2px;
+            background: var(--gold);
+            margin: 0 auto;
         }
-        .tagline {
-            font-size: 1.2em;
-            color: #7f8c8d;
+
+        .hero-eyebrow {
+            font-family: 'Raleway', sans-serif;
+            font-size: 0.7em;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 20px;
+        }
+
+        .hero h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(2.8em, 6vw, 5em);
+            font-weight: 300;
+            color: var(--charcoal);
+            line-height: 1.1;
+            margin-bottom: 18px;
+            letter-spacing: -0.01em;
+        }
+
+        .hero h1 em {
+            font-style: italic;
+            color: var(--gold);
+        }
+
+        .hero-sub {
+            font-size: 0.92em;
+            color: var(--muted);
+            max-width: 520px;
+            margin: 0 auto 32px;
+            line-height: 1.7;
+            font-weight: 300;
+        }
+
+        /* ── author cards ── */
+        .authors-section {
+            padding: 60px 20px 100px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .section-label {
+            text-align: center;
+            font-size: 0.68em;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            color: var(--muted);
+            margin-bottom: 50px;
+        }
+
+        .authors-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .author-card {
+            background: var(--warm-white);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            padding: 48px 36px 40px;
+            text-align: center;
+            position: relative;
+            transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
+            cursor: pointer;
+            text-decoration: none;
+            display: block;
+            color: inherit;
+        }
+
+        .author-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 3px;
+            background: var(--gold);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.35s ease;
+        }
+
+        .author-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 50px rgba(26,20,16,0.1);
+            border-color: var(--gold-light);
+        }
+
+        .author-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .card-number {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 0.8em;
+            color: var(--gold);
+            letter-spacing: 0.12em;
+            margin-bottom: 24px;
             font-style: italic;
         }
 
-        .books-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 25px;
-            margin-top: 25px;
+        .card-ornament {
+            width: 36px;
+            height: 1px;
+            background: var(--border);
+            margin: 0 auto 28px;
         }
 
-        .book-card {
-            background: #f8f9fa;
-            border-radius: 8px;
-            padding: 30px;
-            text-align: center;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        .author-name {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.0em;
+            font-weight: 600;
+            color: var(--charcoal);
+            line-height: 1.2;
+            margin-bottom: 10px;
         }
 
-        .book-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
-        }
-
-        .book-cover {
-            width: 100%;
-            max-width: 200px;
-            height: 300px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            margin: 0 auto 20px;
-            border-radius: 5px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 1.2em;
-            font-weight: bold;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-        }
-
-        .book-title {
-            font-size: 1.5em;
-            color: #2c3e50;
-            margin-bottom: 15px;
-            font-weight: bold;
-        }
-
-        .book-description {
-            color: #555;
+        .author-genre {
+            font-size: 0.75em;
+            color: var(--gold);
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            font-weight: 500;
             margin-bottom: 20px;
-            line-height: 1.8;
         }
 
-        .buy-button {
+        .card-divider {
+            width: 30px;
+            height: 1px;
+            background: var(--border);
+            margin: 0 auto 22px;
+        }
+
+        .author-bio {
+            font-size: 0.85em;
+            color: var(--muted);
+            line-height: 1.75;
+            margin-bottom: 34px;
+            font-weight: 300;
+        }
+
+        .card-cta {
             display: inline-block;
-            background: #FF9900;
+            padding: 11px 28px;
+            border: 1.5px solid var(--gold);
+            color: var(--gold);
+            font-size: 0.7em;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            font-weight: 600;
+            border-radius: 2px;
+            transition: background 0.25s ease, color 0.25s ease;
+        }
+
+        .author-card:hover .card-cta {
+            background: var(--gold);
             color: white;
-            padding: 12px 30px;
-            text-decoration: none;
-            border-radius: 5px;
-            font-weight: bold;
-            transition: background 0.3s ease;
-            box-shadow: 0 3px 10px rgba(255,153,0,0.3);
         }
 
-        .buy-button:hover {
-            background: #e68a00;
-            box-shadow: 0 5px 15px rgba(255,153,0,0.4);
-        }
-
+        /* ── footer ── */
         footer {
+            background: var(--charcoal);
+            color: var(--muted);
             text-align: center;
-            margin-top: 60px;
-            padding-top: 30px;
-            border-top: 2px solid #ecf0f1;
-            color: #7f8c8d;
+            padding: 40px 20px;
+            font-size: 0.78em;
+            letter-spacing: 0.05em;
         }
 
-        @media (max-width: 768px) {
-            .container {
-                padding: 20px;
-            }
+        footer a {
+            color: var(--gold-light);
+            text-decoration: none;
+        }
 
-            h1 {
-                font-size: 2em;
-            }
+        footer a:hover { text-decoration: underline; }
 
-            .books-grid {
-                grid-template-columns: 1fr;
-            }
+        footer .footer-name {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.4em;
+            color: var(--border);
+            font-style: italic;
+            margin-bottom: 12px;
+        }
+
+        /* ── animations ── */
+        .author-card {
+            opacity: 0;
+            animation: fadeUp 0.6s ease forwards;
+        }
+        .author-card:nth-child(1) { animation-delay: 0.1s; }
+        .author-card:nth-child(2) { animation-delay: 0.25s; }
+        .author-card:nth-child(3) { animation-delay: 0.4s; }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(24px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        .hero h1, .hero-eyebrow, .hero-sub {
+            opacity: 0;
+            animation: fadeUp 0.7s ease forwards;
+        }
+        .hero-eyebrow { animation-delay: 0s; }
+        .hero h1      { animation-delay: 0.12s; }
+        .hero-sub     { animation-delay: 0.22s; }
+
+        @media (max-width: 680px) {
+            .hero { padding: 56px 20px 48px; }
+            .authors-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <header>
-            <h1>L.M.Harwood- Author - Storyteller
-            </h1>
-            <h2>  <p><a href="mailto:lindaharwood123@gmail.com" style="color: #2c3e50; text-decoration: underline;">Contact Me</a></p> <h2>
-            <p class="tagline">L.M. Harwood crafts relatable books across genres: true stories, creative non-fiction, photo-based children's books, and practical training guides. She also writes under the Pen Names: David P. Scott and Linda Maree</p>
-       </header>
-               <div class="books-grid"> 
-                    <!-- Book 0  -->
-                 <div class="book-card">                     
-                         <img src="WTWCover.jpg" alt="Book Cover" style="width: 200px; height: 300px; object-fit: cover; border-radius: 5px;">                    
-                <h2 class="book-title">Where the Wild Belongss</h2>
-                <p class="book-description">
-                  A Heartwarming Small Town Romance about Second Chances and Belonging - A Standalone Novel
-                </p>
-               <a href="https://www.amazon.com/dp/ B0GQ2WKFSD" class="buy-button" target="_blank">Buy on Amazon</a>
-   </p>
-            </div>  
-                    <!-- Book 0  -->
-                 <div class="book-card">                     
-                         <img src="Cove cozy linda Maree.jpg" alt="Book Cover" style="width: 200px; height: 300px; object-fit: cover; border-radius: 5px;">                    
-                <h2 class="book-title">Around the Solar System in 80 Days</h2>
-                <p class="book-description">
-                  A Cozy Sci-Fi Journey of Friendship, Discovery and Space Travel
-                </p>
-               <a href="https://www.amazon.com/dp/ B0GKMPPRB6" class="buy-button" target="_blank">Buy on Amazon</a>
-   </p>
-            </div>  
-                    <!-- Book 0 --> 
-                <div class="book-card"> 
-                         <img src="If only I stayed.jpg" alt="Book Cover" style="width: 200px; height: 300px; object-fit: cover; border-radius: 5px;">                    
-                <h2 class="book-title">If Only I Stayed</h2>
-                <p class="book-description">
-                   A Heart-Wrenching Story of Love, Jealousy, Betrayal and Tragedy
-                </p>
-               <a href="https://www.amazon.com/dp/B0GHNLRVT3" class="buy-button" target="_blank">Buy on Amazon</a>
-    </p>
-            </div>
-                    <!-- Book 0 -->
-                 <div class="book-card">                     
-                         <img src="Milky world adventure.jpg" alt="Book Cover" style="width: 200px; height: 300px; object-fit: cover; border-radius: 5px;">                    
-                <h2 class="book-title">Milky's World Adventures</h2>
-                <p class="book-description">
-                   The little Dog who travelled the world to share love and friendship with other creatures
-                </p>
-               <a href="https://www.amazon.com/dp/B0GNX5KF8Q" class="buy-button" target="_blank">Buy on Amazon</a>
-<p style="font-size: 0.85em; margin-top: 10px; color: #555;">
-    </p>
-            </div>
-                   <!-- Book 00) -->
-                 <div class="book-card">                     
-                         <img src="Final cover Book 2 Father Brooks.jpg" alt="Book Cover" style="width: 200px; height: 300px; object-fit: cover; border-radius: 5px;">                    
-                <h2 class="book-title">Father Brooks' Mystery Stories Book 2</h2>
-                <p class="book-description">
-                   Classic Chesterton's Father Brown Mysteries re-imagined for the Modern Era: 15 Mysteries - all with a twist
-                </p>
-               <a href="https://www.amazon.com/dp/B0G78MV3VG" class="buy-button" target="_blank">Buy on Amazon</a>
-<p style="font-size: 0.85em; margin-top: 10px; color: #555;">
-    Also available on: 
-    <a href="https://www.amazon.co.uk/dp/B0G78MV3VG" target="_blank" style="color: #2c3e50; text-decoration: underline;">UK</a> | 
-    <a href="https://www.amazon.es/dp/B0G78MV3VG" target="_blank" style="color: #2c3e50; text-decoration: underline;">ES</a> | 
-    <a href="https://www.amazon.com.au/dp/B0G78MV3VG" target="_blank" style="color: #2c3e50; text-decoration: underline;">AU</a> | 
-    <a href="https://www.amazon.de/dp/B0G78MV3VG" target="_blank" style="color: #2c3e50; text-decoration: underline;">DE</a> | 
-    <a href="https://www.amazon.nl/dp/B0G78MV3VG" target="_blank" style="color: #2c3e50; text-decoration: underline;">NL</a>
-</p>
-            </div>
-             <!-- Book 1 -->
-                 <div class="book-card">                     
-                         <img src="Book 1 Sherlock Book cover.jpg" alt="Book Cover" style="width: 200px; height: 300px; object-fit: cover; border-radius: 5px;">                    
-                <h2 class="book-title">The Adventures of Sherlock Hayes Book 1</h2>
-                <p class="book-description">
-                   15 Original Sherlock Holmes Cases Reimagined for The Modern Era (Also available in German - 10 Fälle )
-                </p>
-               <a href="https://www.amazon.com/dp/B0FTYLZTY2" class="buy-button" target="_blank">Buy on Amazon</a>
-<p style="font-size: 0.85em; margin-top: 10px; color: #555;">
-    Also available on: 
-    <a href="https://www.amazon.co.uk/dp/B0FTYLZTY2" target="_blank" style="color: #2c3e50; text-decoration: underline;">UK</a> | 
-    <a href="https://www.amazon.es/dp/B0FTYLZTY2" target="_blank" style="color: #2c3e50; text-decoration: underline;">ES</a> | 
-    <a href="https://www.amazon.com.au/dp/B0FTYLZTY2" target="_blank" style="color: #2c3e50; text-decoration: underline;">AU</a> | 
-    <a href="https://www.amazon.de/dp/B0FWD5RQ1Y" target="_blank" style="color: #2c3e50; text-decoration: underline;">DE</a> | 
-    <a href="https://www.amazon.nl/dp/B0FTYLZTY2" target="_blank" style="color: #2c3e50; text-decoration: underline;">NL</a>
-</p>
-            </div>
-                    <!-- Book 1a -->
-                 <div class="book-card">                     
-                         <img src="Book 2 Sherlock Book cover.jpg" alt="Book Cover" style="width: 200px; height: 300px; object-fit: cover; border-radius: 5px;">                    
-                <h2 class="book-title">The Adventures of Sherlock Hayes Book 2</h2>
-                <p class="book-description">
-                   15 Original Sherlock Holmes Cases Reimagined for The Modern Era (Also available in German - 10 Fälle )
-                </p>
-               <a href="https://www.amazon.com/dp/B0G4XBMH87" class="buy-button" target="_blank">Buy on Amazon</a>
-<p style="font-size: 0.85em; margin-top: 10px; color: #555;">
-    Also available on: 
-    <a href="https://www.amazon.co.uk/dp/B0G4XBMH87" target="_blank" style="color: #2c3e50; text-decoration: underline;">UK</a> | 
-    <a href="https://www.amazon.es/dp/B0G4XBMH87" target="_blank" style="color: #2c3e50; text-decoration: underline;">ES</a> | 
-    <a href="https://www.amazon.com.au/dp/B0G4XBMH87" target="_blank" style="color: #2c3e50; text-decoration: underline;">AU</a> | 
-    <a href="https://www.amazon.de/dp/B0G4XBMH87" target="_blank" style="color: #2c3e50; text-decoration: underline;">DE</a> | 
-    <a href="https://www.amazon.nl/dp/B0G4XBMH87" target="_blank" style="color: #2c3e50; text-decoration: underline;">NL</a>
-</p>
-            </div>
-            <!-- Book 2 -->
-                <div class="book-card">
-                     <img src= "Ghost final cover.jpg" alt="Book Cover" style="width: 200px; height: 300px; object-fit: cover; border-radius: 5px;">
-               <h2 class="book-title">Ghost Sories in the Modern Era</h2>
-               <p class="book-description">
-                   A Re-Creation based on the Stories of M.R.James Ghost Stories of an Antiquary
-               </p>
-              <a href="https://www.amazon.com/dp/B0FT3PHXQZ" class="buy-button" target="_blank">Buy on Amazon</a>
-<p style="font-size: 0.85em; margin-top: 10px; color: #555;">
-    Also available on: 
-    <a href="https://www.amazon.co.uk/dp/B0FT31Q7H7" target="_blank" style="color: #2c3e50; text-decoration: underline;">UK</a> | 
-    <a href="https://www.amazon.es/dp/B0FT31Q7H7" target="_blank" style="color: #2c3e50; text-decoration: underline;">ES</a> | 
-    <a href="https://www.amazon.com.au/dp/B0FT31Q7H7" target="_blank" style="color: #2c3e50; text-decoration: underline;">AU</a> | 
-    <a href="https://www.amazon.de/dp/B0G1BX9Z81" target="_blank" style="color: #2c3e50; text-decoration: underline;">DE</a> | 
-    <a href="https://www.amazon.nl/dp/B0FT31Q7H7" target="_blank" style="color: #2c3e50; text-decoration: underline;">NL</a>
-</p>
-             </div>
-         <!-- Book 3 -->
-            <div class="book-card">
-                     <img src= "Bell Final Cover.jpg" alt="Book Cover" style="width: 200px; height: 300px; object-fit: cover; border-radius: 5px;">
-             <h2 class="book-title">The Forbidden Love Affair of Gertrude Bell</h2>
-                <p class="book-description">
-                    Secret love letters of Romance, Passion and Longing of the woman who shaped the Middle East
-                </p>
-                 <a href="https://www.amazon.com/dp/B0FR1N6WCD" class="buy-button" target="_blank">Buy on Amazon</a>
-           <p style="font-size: 0.85em; margin-top: 10px; color: #555;">
-    Also available on: 
-    <a href="https://www.amazon.co.uk/dp/B0FR2YBBBF" target="_blank" style="color: #2c3e50; text-decoration: underline;">UK</a> | 
-    <a href="https://www.amazon.es/dp/B0FR2YBBBF" target="_blank" style="color: #2c3e50; text-decoration: underline;">ES</a> | 
-    <a href="https://www.amazon.com.au/dp/B0FR2YBBBF" target="_blank" style="color: #2c3e50; text-decoration: underline;">AU</a> | 
-    <a href="https://www.amazon.de/dp/B0FR2YBBBF" target="_blank" style="color: #2c3e50; text-decoration: underline;">DE</a> | 
-    <a href="https://www.amazon.nl/dp/B0FR2YBBBF" target="_blank" style="color: #2c3e50; text-decoration: underline;">NL</a>
-</p>
-             </div>
-     <!-- Book 4 -->
-            <div class="book-card">
-                     <img src= "Long Road Cover 2.jpg" alt="Book Cover" style="width: 200px; height: 300px; object-fit: cover; border-radius: 5px;">
-             <h2 class="book-title">The Long Road to Windmills</h2>
-                <p class="book-description">
-                    A Kurdish Girl Escapes Iraq and finds a way to the Netherlands (Also available in Dutch, German and Spanish)
-                </p>
-                 <a href="https://www.amazon.com/dp/B0F92MTCXC" class="buy-button" target="_blank">Buy on Amazon</a>
-            <p style="font-size: 0.85em; margin-top: 10px; color: #555;">
-    Also available on: 
-    <a href="https://www.amazon.co.uk/dp/B0F92WG6RL" target="_blank" style="color: #2c3e50; text-decoration: underline;">UK</a> | 
-    <a href="https://www.amazon.es/dp/B0FPG2RXRR" target="_blank" style="color: #2c3e50; text-decoration: underline;">ES</a> | 
-    <a href="https://www.amazon.com.au/dp/B0F92WG6RL" target="_blank" style="color: #2c3e50; text-decoration: underline;">AU</a> | 
-    <a href="https://www.amazon.de/dp/B0FN7ZJSV9" target="_blank" style="color: #2c3e50; text-decoration: underline;">DE</a> | 
-    <a href="https://www.amazon.nl/dp/B0FRXG4RFR" target="_blank" style="color: #2c3e50; text-decoration: underline;">NL</a>
-</p>
-             </div>
-             
-    
-     <!-- Book 6 -->
-            <div class="book-card">
-                     <img src= "Milky 1 English cover.jpg" alt="Book Cover" style="width: 200px; height: 200px; object-fit: cover; border-radius: 5px;">
-             <h2 class="book-title">Milky's Amazing Animal Adventure</h2>
-                <p class="book-description">
-                    Book 1 A picture Book of Real Animals and Fun Facts (Also available in Dutch, German and Spanish)
-                </p>
-                 <a href="https://www.amazon.com/dp/B0FK3GPGD6" class="buy-button" target="_blank">Buy on Amazon</a>
-           <p style="font-size: 0.85em; margin-top: 10px; color: #555;">
-    Also available on: 
-    <a href="https://www.amazon.co.uk/dp/B0FK1RVDWB" target="_blank" style="color: #2c3e50; text-decoration: underline;">UK</a> | 
-    <a href="https://www.amazon.es/dp/B0FMF4FT3D" target="_blank" style="color: #2c3e50; text-decoration: underline;">ES</a> | 
-    <a href="https://www.amazon.com.au/dp/B0FK1RVDWB" target="_blank" style="color: #2c3e50; text-decoration: underline;">AU</a> | 
-    <a href="https://www.amazon.de/dp/B0FLWVKZJW" target="_blank" style="color: #2c3e50; text-decoration: underline;">DE</a> | 
-    <a href="https://www.amazon.nl/dp/B0FL6MZB47" target="_blank" style="color: #2c3e50; text-decoration: underline;">NL</a>
-</p>
-             </div>
-             <!-- Book 7 -->
-            <div class="book-card">
-                     <img src= "Milky 2 English cover.jpg" alt="Book Cover" style="width: 200px; height: 200px; object-fit: cover; border-radius: 5px;">
-             <h2 class="book-title">Milky's Amazing Animal Adventure</h2>
-                <p class="book-description">
-                    Book 2 A picture Book of Real Animals and Fun Facts
-                </p>
-                 <a href="https://www.amazon.com/dp/B0FL26LL2D" class="buy-button" target="_blank">Buy on Amazon</a>
-          <p style="font-size: 0.85em; margin-top: 10px; color: #555;">
-    Also available on: 
-    <a href="https://www.amazon.co.uk/dp/B0FKVG3QJQ" target="_blank" style="color: #2c3e50; text-decoration: underline;">UK</a> | 
-    <a href="https://www.amazon.es/dp/B0FKVG3QJQ" target="_blank" style="color: #2c3e50; text-decoration: underline;">ES</a> | 
-    <a href="https://www.amazon.com.au/dp/B0FKVG3QJQ" target="_blank" style="color: #2c3e50; text-decoration: underline;">AU</a> | 
-    <a href="https://www.amazon.de/dp/B0FKVG3QJQ" target="_blank" style="color: #2c3e50; text-decoration: underline;">DE</a> | 
-    <a href="https://www.amazon.nl/dp/B0FKVG3QJQ" target="_blank" style="color: #2c3e50; text-decoration: underline;">NL</a>
-</p>
-             </div>
-             <!-- Book 8 -->
-            <div class="book-card">
-                     <img src= "Milky 3 english cover.jpg" alt="Book Cover" style="width: 200px; height: 200px; object-fit: cover; border-radius: 5px;">
-             <h2 class="book-title">Milky's Amazing Animal Adventure</h2>
-                <p class="book-description">
-                    Book 3 A picture Book of Real Animals and Fun Facts
-                </p>
-                 <a href="https://www.amazon.com/dp/B0FLVKMYHS" class="buy-button" target="_blank">Buy on Amazon</a>
-          <p style="font-size: 0.85em; margin-top: 10px; color: #555;">
-    Also available on: 
-    <a href="https://www.amazon.co.uk/dp/B0FLZJ2YCS" target="_blank" style="color: #2c3e50; text-decoration: underline;">UK</a> | 
-    <a href="https://www.amazon.es/dp/B0FLVKMYHS" target="_blank" style="color: #2c3e50; text-decoration: underline;">ES</a> | 
-    <a href="https://www.amazon.com.au/dp/B0FLZJ2YCS" target="_blank" style="color: #2c3e50; text-decoration: underline;">AU</a> | 
-    <a href="https://www.amazon.de/dp/B0FLZJ2YCS" target="_blank" style="color: #2c3e50; text-decoration: underline;">DE</a> | 
-    <a href="https://www.amazon.nl/dp/B0FLZJ2YCS" target="_blank" style="color: #2c3e50; text-decoration: underline;">NL</a>
-</p>
-             </div>
-              <!-- Book 5 -->
-            <div class="book-card">
-                <div class="book-cover">
-                    <img src="XmasMilkycover.jpg" alt="Book Cover" style="width: 200px; height: 300px; object-fit: cover; border-radius: 5px;">
-                </div>
-                <h2 class="book-title">Milky's Christmas Activity Book</h2>
-                <p class="book-description">
-                    A Picture Book of Real Animals, Fun Animal Facts, Short Stories, Word Search, Who Am I, Coloring pages and more (Also available in German)
-                </p>
-                <a href="https://www.amazon.com/dp/B0FRR44CRJ" class="buy-button" target="_blank">Buy on Amazon</a>
-              <p style="font-size: 0.85em; margin-top: 10px; color: #555;">
-    Also available on: 
-    <a href="https://www.amazon.co.uk/dp/B0FRR44CRJ" target="_blank" style="color: #2c3e50; text-decoration: underline;">UK</a> | 
-    <a href="https://www.amazon.es/dp/B0FRR44CRJ" target="_blank" style="color: #2c3e50; text-decoration: underline;">ES</a> | 
-    <a href="https://www.amazon.com.au/dp/B0FR1537PH" target="_blank" style="color: #2c3e50; text-decoration: underline;">AU</a> | 
-    <a href="https://www.amazon.de/dp/B0FTWX179T" target="_blank" style="color: #2c3e50; text-decoration: underline;">DE</a> | 
-    <a href="https://www.amazon.nl/dp/B0FRR44CRJ" target="_blank" style="color: #2c3e50; text-decoration: underline;">NL</a>
-</p>
-             </div>
-                <!-- Book 9 -->
-            <div class="book-card">
-              <img src="managers.jpg" alt="Book Cover" style="width: 200px; height: 300px; object-fit: cover; border-radius: 5px;">
-                <h2 class="book-title">The Managers Playbook</h2>
-               <p class="book-description">
-    20 Essential skills to transform your team into high performers
-</p>
-                <a href="https://www.amazon.com/dp/B0FBX7MQSN" class="buy-button" target="_blank">Buy on Amazon</a>
-  <p style="font-size: 0.85em; margin-top: 10px; color: #555;">
-    Also available on: 
-    <a href="https://www.amazon.co.uk/dp/B0FC463BNC" target="_blank" style="color: #2c3e50; text-decoration: underline;">UK</a> | 
-    <a href="https://www.amazon.es/dp/B0FBX7MQSN" target="_blank" style="color: #2c3e50; text-decoration: underline;">ES</a> | 
-    <a href="https://www.amazon.com.au/dp/B0FC463BNC" target="_blank" style="color: #2c3e50; text-decoration: underline;">AU</a> | 
-    <a href="https://www.amazon.de/dp/B0FC463BNC" target="_blank" style="color: #2c3e50; text-decoration: underline;">DE</a> | 
-    <a href="https://www.amazon.nl/dp/B0FC463BNC" target="_blank" style="color: #2c3e50; text-decoration: underline;">NL</a>
-</p>
-             </div>
- <!-- Book 10 -->
-            <div class="book-card">
-                     <img src= "Burn Cover Amazon.jpg" alt="Book Cover" style="width: 200px; height: 300px; object-fit: cover; border-radius: 5px;">
-             <h2 class="book-title">Burnout Recovery Handbook</h2>
-                <p class="book-description">
-                    The Complete Guide to Workplace Stress, Mental Health and Resilience
-                </p>
-                 <a href="https://www.amazon.com/dp/B0FCSKPXT8" class="buy-button" target="_blank">Buy on Amazon</a>
-  <p style="font-size: 0.85em; margin-top: 10px; color: #555;">
-    Also available on: 
-    <a href="https://www.amazon.co.uk/dp/B0FCYBM369" target="_blank" style="color: #2c3e50; text-decoration: underline;">UK</a> | 
-    <a href="https://www.amazon.es/dp/B0FCYBM369" target="_blank" style="color: #2c3e50; text-decoration: underline;">ES</a> | 
-    <a href="https://www.amazon.com.au/dp/B0FCYBM369" target="_blank" style="color: #2c3e50; text-decoration: underline;">AU</a> | 
-    <a href="https://www.amazon.de/dp/B0FCYBM369" target="_blank" style="color: #2c3e50; text-decoration: underline;">DE</a> | 
-    <a href="https://www.amazon.nl/dp/B0FCYBM369" target="_blank" style="color: #2c3e50; text-decoration: underline;">NL</a>
-</p>
-             </div>
-     <!-- Book 11 -->
-            <div class="book-card">
-                     <img src= "Attention Cover 1.jpg" alt="Book Cover" style="width: 200px; height: 300px; object-fit: cover; border-radius: 5px;">
-             <h2 class="book-title">Who Owns Your Attention</h2>
-                <p class="book-description">
-                    How Silicon Valley hijacked your mind and rewrote your future
-                </p>
-                 <a href="https://www.amazon.com/dp/B0FHG1BF3P" class="buy-button" target="_blank">Buy on Amazon</a>
-  <p style="font-size: 0.85em; margin-top: 10px; color: #555;">
-    Also available on: 
-    <a href="https://www.amazon.co.uk/dp/B0FHFWY8Z9" target="_blank" style="color: #2c3e50; text-decoration: underline;">UK</a> | 
-    <a href="https://www.amazon.es/dp/B0FHG1BF3P" target="_blank" style="color: #2c3e50; text-decoration: underline;">ES</a> | 
-    <a href="https://www.amazon.com.au/dp/B0FHFWY8Z9" target="_blank" style="color: #2c3e50; text-decoration: underline;">AU</a> | 
-    <a href="https://www.amazon.de/dp/B0FHFWY8Z9" target="_blank" style="color: #2c3e50; text-decoration: underline;">DE</a> | 
-    <a href="https://www.amazon.nl/dp/B0FHFWY8Z9" target="_blank" style="color: #2c3e50; text-decoration: underline;">NL</a>
-</p>
-             </div>
-             <!-- Book 12 -->
-            <div class="book-card">
-                     <img src= "Memory.jpg" alt="Book Cover" style="width: 200px; height: 300px; object-fit: cover; border-radius: 5px;">
-             <h2 class="book-title">Who Owns Your Memory</h2>
-                <p class="book-description">
-                    Inside the race to hack, delete & control the human mind
-                </p>
-                 <a href="https://www.amazon.com/dp/B0FD8ZMQB5" class="buy-button" target="_blank">Buy on Amazon</a>
- <p style="font-size: 0.85em; margin-top: 10px; color: #555;">
-    Also available on: 
-    <a href="https://www.amazon.co.uk/dp/B0FDB17JSQ" target="_blank" style="color: #2c3e50; text-decoration: underline;">UK</a> | 
-    <a href="https://www.amazon.es/dp/B0FD8ZMQB5" target="_blank" style="color: #2c3e50; text-decoration: underline;">ES</a> | 
-    <a href="https://www.amazon.com.au/dp/B0FDB17JSQ" target="_blank" style="color: #2c3e50; text-decoration: underline;">AU</a> | 
-    <a href="https://www.amazon.de/dp/B0FDB17JSQ" target="_blank" style="color: #2c3e50; text-decoration: underline;">DE</a> | 
-    <a href="https://www.amazon.nl/dp/B0FDB17JSQ" target="_blank" style="color: #2c3e50; text-decoration: underline;">NL</a>
-</p>
-             </div>
-    <!-- Book 13 -->
-            <div class="book-card">
-                     <img src= "Dumbell Amazon final cover.jpg" alt="Book Cover" style="width: 200px; height: 300px; object-fit: cover; border-radius: 5px;">
-             <h2 class="book-title">Strength Training for Women over 40</h2>
-                <p class="book-description">
-                   Get Strong, Fit & Toned in15 minutes using Dumbells Only
-                </p>
-                 <a href="https://www.amazon.com/dp/B0FGW74YB3" class="buy-button" target="_blank">Buy on Amazon</a>
-    <p style="font-size: 0.85em; margin-top: 10px; color: #555;">
-    Also available on: 
-    <a href="https://www.amazon.co.uk/dp/B0FGW74YB3" target="_blank" style="color: #2c3e50; text-decoration: underline;">UK</a> | 
-    <a href="https://www.amazon.es/dp/B0FGQTVG34" target="_blank" style="color: #2c3e50; text-decoration: underline;">ES</a> | 
-    <a href="https://www.amazon.com.au/dp/B0FGW74YB3" target="_blank" style="color: #2c3e50; text-decoration: underline;">AU</a> | 
-    <a href="https://www.amazon.de/dp/B0FGW74YB3" target="_blank" style="color: #2c3e50; text-decoration: underline;">DE</a> | 
-    <a href="https://www.amazon.nl/dp/B0FGW74YB3" target="_blank" style="color: #2c3e50; text-decoration: underline;">NL</a>
-</p>
-             </div>
-     <!-- Book 14 -->
-            <div class="book-card">
-                     <img src= "Aged Cover Amazon.jpg" alt="Book Cover" style="width: 200px; height: 300px; object-fit: cover; border-radius: 5px;">
-             <h2 class="book-title">Elder Care: Caring Together Case Studies</h2>
-                <p class="book-description">
-                    A Story-Based guide to excellence for Caregivers of Aging Parents
-                </p>
-                 <a href="https://www.amazon.com/dp/B0FCR3NP5N" class="buy-button" target="_blank">Buy on Amazon</a>
- <p style="font-size: 0.85em; margin-top: 10px; color: #555;">
-    Also available on: 
-    <a href="https://www.amazon.co.uk/dp/B0FCRZB3F7" target="_blank" style="color: #2c3e50; text-decoration: underline;">UK</a> | 
-    <a href="https://www.amazon.es/dp/B0FCRZB3F7" target="_blank" style="color: #2c3e50; text-decoration: underline;">ES</a> | 
-    <a href="https://www.amazon.com.au/dp/B0FCRZB3F7" target="_blank" style="color: #2c3e50; text-decoration: underline;">AU</a> | 
-    <a href="https://www.amazon.de/dp/B0FCRZB3F7" target="_blank" style="color: #2c3e50; text-decoration: underline;">DE</a> | 
-    <a href="https://www.amazon.nl/dp/B0FCRZB3F7" target="_blank" style="color: #2c3e50; text-decoration: underline;">NL</a>
-</p>
-             </div>
-   
 
-            <!-- Book 15-->
-            <div class="book-card">
-                <div class="book-cover">
-                    <img src="Tipsfortradies.jpg" alt="Book Cover" style="width: 200px; height: 300px; object-fit: cover; border-radius: 5px;">
-                </div>
-                <h2 class="book-title">Tips for Tradies</h2>
-                <p class="book-description">
-                    Tips for runnning a contractors business in Australia
-                </p>
-                 <a href="https://www.amazon.com/dp/B0FCFXXCHC" class="buy-button" target="_blank">Buy on Amazon</a>
- <p style="font-size: 0.85em; margin-top: 10px; color: #555;">
-    Also available on: 
-       <a href="https://www.amazon.com.au/dp/B0FC3KPQPH" target="_blank" style="color: #2c3e50; text-decoration: underline;">AU</a>  
-    
-</p>
-             </div>
-     <!-- Book 16 -->
-            <div class="book-card">
-                     <img src= "30 secrets cover.jpg" alt="Book Cover" style="width: 200px; height: 300px; object-fit: cover; border-radius: 5px;">
-             <h2 class="book-title">30 Secrets</h2>
-                <p class="book-description">
-                   Secrets you need to learn about running your own contractors business
-                </p>
-                 <a href="https://www.amazon.com/dp/B0FC2YW2L2" class="buy-button" target="_blank">Buy on Amazon</a>
- <p style="font-size: 0.85em; margin-top: 10px; color: #555;">
-    Also available on: 
-    <a href="https://www.amazon.co.uk/dp/B0FC61MJLF" target="_blank" style="color: #2c3e50; text-decoration: underline;">UK</a> | 
-    <a href="https://www.amazon.es/dp/B0FC61MJLF" target="_blank" style="color: #2c3e50; text-decoration: underline;">ES</a> | 
-    <a href="https://www.amazon.com.au/dp/B0FC61MJLF" target="_blank" style="color: #2c3e50; text-decoration: underline;">AU</a> | 
-    <a href="https://www.amazon.de/dp/B0FC61MJLF" target="_blank" style="color: #2c3e50; text-decoration: underline;">DE</a> | 
-    <a href="https://www.amazon.nl/dp/B0FC61MJLF" target="_blank" style="color: #2c3e50; text-decoration: underline;">NL</a>
-</p>
-             </div>
-                
-      <!-- Book 17 -->
-            <div class="book-card">
-                     <img src= "Amazononethreesevenbookcover-4.jpg" alt="Book Cover" style="width: 280px; height: 180px; object-fit: cover; border-radius: 5px;">
-             <h2 class="book-title">onethreesevensundays</h2>
-                <p class="book-description">
-                    An Urban Coffee Table Book of Unique Photography
-                </p>
-                 <a href="https://www.amazon.com/dp/B0FJFF71Y3" class="buy-button" target="_blank">Buy on Amazon</a>
-    <p style="font-size: 0.85em; margin-top: 10px; color: #555;">
-    Also available on: 
-    <a href="https://www.amazon.co.uk/dp/B0FJFF71Y3" target="_blank" style="color: #2c3e50; text-decoration: underline;">UK</a> | 
-    <a href="https://www.amazon.es/dp/B0FJFF71Y3" target="_blank" style="color: #2c3e50; text-decoration: underline;">ES</a> | 
-    <a href="https://www.amazon.com.au/dp/B0FJFF71Y3" target="_blank" style="color: #2c3e50; text-decoration: underline;">AU</a> | 
-    <a href="https://www.amazon.de/dp/B0FJFF71Y3" target="_blank" style="color: #2c3e50; text-decoration: underline;">DE</a> | 
-    <a href="https://www.amazon.nl/dp/B0FJFF71Y3" target="_blank" style="color: #2c3e50; text-decoration: underline;">NL</a>
-</p>
-             </div>
-   </div>
-   
-     <footer style="border-top: 2px solid #2c3e50; padding-top: 30px;">
+<div class="top-bar">One Author &nbsp;·&nbsp; Three Voices &nbsp;·&nbsp; Many Worlds</div>
+
+<header class="hero">
+    <p class="hero-eyebrow">The Complete Collection</p>
+    <h1>Stories Worth <em>Reading</em></h1>
+    <p class="hero-sub">Three pen names. Three distinct worlds. One author who loves to write across every genre that matters.</p>
+</header>
+
+<section class="authors-section">
+    <p class="section-label">Choose your author</p>
+    <div class="authors-grid">
+
+        <!-- Card 1: L.M. Harwood -->
+        <a href="lm-harwood.html" class="author-card">
+            <p class="card-number">Author I</p>
+            <div class="card-ornament"></div>
+            <h2 class="author-name">L.M. Harwood</h2>
+            <p class="author-genre">Non-Fiction &amp; Business</p>
+            <div class="card-divider"></div>
+            <p class="author-bio">Practical guides, true stories and creative non-fiction that inform, inspire and challenge the way you see the world around you.</p>
+            <span class="card-cta">View Collection</span>
+        </a>
+
+        <!-- Card 2: Linda Maree -->
+        <a href="linda-maree.html" class="author-card">
+            <p class="card-number">Author II</p>
+            <div class="card-ornament"></div>
+            <h2 class="author-name">Linda Maree</h2>
+            <p class="author-genre">Romance &amp; Children's Books</p>
+            <div class="card-divider"></div>
+            <p class="author-bio">Heartfelt romance fiction and enchanting children's stories — tales of love, friendship, and the magic found in everyday adventures.</p>
+            <span class="card-cta">View Collection</span>
+        </a>
+
+        <!-- Card 3: David P. Scott -->
+        <a href="david-scott.html" class="author-card">
+            <p class="card-number">Author III</p>
+            <div class="card-ornament"></div>
+            <h2 class="author-name">David P. Scott</h2>
+            <p class="author-genre">Reimagined Classics</p>
+            <div class="card-divider"></div>
+            <p class="author-bio">Beloved literary classics brought boldly into the modern era — the same great stories, reimagined for today's readers.</p>
+            <span class="card-cta">View Collection</span>
+        </a>
+
+    </div>
+</section>
+
+<footer>
+    <div class="footer-name">L.M. Harwood</div>
     <p>&copy; 2025 L.M. Harwood. All rights reserved.</p>
-    <p><a href="mailto:lindaharwood123@gmail.com" style="color: #2c3e50; text-decoration: underline;">Contact Me</a></p>
+    <p style="margin-top:8px"><a href="mailto:lindaharwood123@gmail.com">Contact Me</a></p>
 </footer>
+
+</body>
+</html>
