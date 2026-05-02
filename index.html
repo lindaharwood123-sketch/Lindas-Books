@@ -219,6 +219,35 @@
 
         .author-card:hover .card-cta::after { transform: translateX(4px); }
 
+        /* ── subtle Substack strip ── */
+        .substack-strip {
+            text-align: center;
+            padding: 28px 20px;
+            border-top: 1px solid rgba(255,255,255,0.06);
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .substack-strip p {
+            font-size: 0.75em;
+            color: #6a5f52;
+            letter-spacing: 0.05em;
+            line-height: 1.7;
+        }
+
+        .substack-strip a {
+            color: var(--gold);
+            text-decoration: none;
+            border-bottom: 1px solid rgba(184,136,42,0.3);
+            padding-bottom: 1px;
+            transition: color 0.25s, border-color 0.25s;
+        }
+
+        .substack-strip a:hover {
+            color: var(--gold-light);
+            border-color: var(--gold-light);
+        }
+
         footer {
             background: #1a1410;
             color: var(--muted);
@@ -306,6 +335,11 @@
 
     </div>
 </section>
+
+<!-- subtle Substack mention -->
+<div class="substack-strip">
+    <p>David P. Scott publishes a free story every week on Substack &mdash; <a href="https://lharwood.substack.com" target="_blank">read free stories here →</a></p>
+</div>
 
 <footer>
     <div class="footer-name">L.M. Harwood</div>

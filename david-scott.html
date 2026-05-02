@@ -89,6 +89,99 @@
             font-weight: 300;
         }
 
+        /* ── Substack banner ── */
+        .substack-banner {
+            background: var(--charcoal);
+            margin: 0 0 0 0;
+            padding: 40px 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .substack-banner::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 3px;
+            background: linear-gradient(to right, transparent, var(--gold), transparent);
+        }
+
+        .substack-banner::after {
+            content: '';
+            position: absolute;
+            bottom: 0; left: 0; right: 0;
+            height: 3px;
+            background: linear-gradient(to right, transparent, var(--gold), transparent);
+        }
+
+        .substack-inner {
+            max-width: 680px;
+            margin: 0 auto;
+        }
+
+        .substack-eyebrow {
+            font-size: 0.62em;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 12px;
+            font-weight: 500;
+        }
+
+        .substack-heading {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(1.4em, 3vw, 2em);
+            font-weight: 300;
+            color: #f5ede0;
+            margin-bottom: 12px;
+            line-height: 1.2;
+        }
+
+        .substack-heading em {
+            font-style: italic;
+            color: var(--gold-light);
+        }
+
+        .substack-desc {
+            font-size: 0.82em;
+            color: #a09080;
+            line-height: 1.75;
+            font-weight: 300;
+            margin-bottom: 24px;
+            max-width: 520px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .substack-btn {
+            display: inline-block;
+            background: var(--gold);
+            color: #fff8ec;
+            padding: 12px 32px;
+            text-decoration: none;
+            border-radius: 3px;
+            font-size: 0.72em;
+            font-weight: 600;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            transition: background 0.25s ease, box-shadow 0.25s ease;
+            box-shadow: 0 4px 16px rgba(184,136,42,0.3);
+        }
+
+        .substack-btn:hover {
+            background: var(--gold-light);
+            box-shadow: 0 6px 20px rgba(184,136,42,0.45);
+        }
+
+        .substack-note {
+            margin-top: 12px;
+            font-size: 0.7em;
+            color: #6a5f52;
+            letter-spacing: 0.05em;
+        }
+
+        /* ── books section ── */
         .books-section {
             max-width: 1200px;
             margin: 0 auto;
@@ -181,36 +274,6 @@
         .also-on a { color: var(--charcoal); text-decoration: underline; }
         .also-on a:hover { color: var(--gold); }
 
-        .coming-soon {
-            text-align: center;
-            padding: 80px 20px;
-            color: var(--muted);
-        }
-
-        .coming-soon .cs-icon {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 4em;
-            font-style: italic;
-            color: var(--border);
-            line-height: 1;
-            margin-bottom: 20px;
-        }
-
-        .coming-soon h2 {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1.8em;
-            font-weight: 300;
-            color: var(--charcoal);
-            margin-bottom: 12px;
-        }
-
-        .coming-soon p {
-            font-size: 0.85em;
-            line-height: 1.8;
-            max-width: 400px;
-            margin: 0 auto;
-        }
-
         footer {
             background: var(--charcoal);
             color: var(--muted);
@@ -243,19 +306,30 @@
     <p class="hero-sub">Beloved literary classics brought boldly into the modern era — the same great stories, reimagined for today's readers.</p>
 </header>
 
+<!-- ── Substack Banner ── -->
+<div class="substack-banner">
+    <div class="substack-inner">
+        <p class="substack-eyebrow">Free Weekly Reading</p>
+        <h2 class="substack-heading">A Free Story <em>Every Week</em> on Substack</h2>
+        <p class="substack-desc">Free weekly stories from the David P. Scott collection — classic detective fiction reimagined for the modern era. Sherlock Holmes, Father Brown and more, retold for today.</p>
+        <a href="https://lharwood.substack.com" class="substack-btn" target="_blank">Read Free Stories →</a>
+        <p class="substack-note">Free to read · New story every week · No subscription required</p>
+    </div>
+</div>
+
 <section class="books-section">
     <p class="section-label">All Books</p>
 
     <div class="books-grid">
 
-        <!-- ADD BOOKS HERE — copy and paste the block below for each book:
-         <!-- The Will to Believe -->
+        <!-- The Will to Believe -->
         <div class="book-card">
             <img src="will_to_believe_cover.jpg" alt="The Will to Believe">
             <h2 class="book-title">The Will to Believe and Other Essays in Popular Philosophy</h2>
             <p class="book-desc">A Modern Condensed Version of William James's philosophy updated for today's readers</p>
-            <a href="https://www.amazon.com/dp/B0G1RH6X95" class="buy-button" target="_blank">Buy on Amazon</a></p>
+            <a href="https://www.amazon.com/dp/B0G1RH6X95" class="buy-button" target="_blank">Buy on Amazon</a>
         </div>
+
         <!-- Father Brooks Book 1 -->
         <div class="book-card">
             <img src="FB_book1_cover.jpg" alt="Father Brooks Mystery Stories Book 1">
@@ -264,7 +338,8 @@
             <a href="https://www.amazon.com/dp/B0G37NNY75" class="buy-button" target="_blank">Buy on Amazon</a>
             <p class="also-on">Also: <a href="https://www.amazon.co.uk/dp/B0G37NNY75" target="_blank">UK</a> | <a href="https://www.amazon.es/dp/B0G37NNY75" target="_blank">ES</a> | <a href="https://www.amazon.com.au/dp/B0G37NNY75" target="_blank">AU</a> | <a href="https://www.amazon.de/dp/B0G78MV3VG" target="_blank">DE</a> | <a href="https://www.amazon.nl/dp/B0G37NNY75" target="_blank">NL</a></p>
         </div>
-         <!-- Father Brooks Book 2 -->
+
+        <!-- Father Brooks Book 2 -->
         <div class="book-card">
             <img src="Final cover Book 2 Father Brooks.jpg" alt="Father Brooks Mystery Stories Book 2">
             <h2 class="book-title">Father Brooks' Mystery Stories Book 2</h2>
@@ -299,24 +374,8 @@
             <a href="https://www.amazon.com/dp/B0FT3PHXQZ" class="buy-button" target="_blank">Buy on Amazon</a>
             <p class="also-on">Also: <a href="https://www.amazon.co.uk/dp/B0FT31Q7H7" target="_blank">UK</a> | <a href="https://www.amazon.es/dp/B0FT31Q7H7" target="_blank">ES</a> | <a href="https://www.amazon.com.au/dp/B0FT31Q7H7" target="_blank">AU</a> | <a href="https://www.amazon.de/dp/B0G1BX9Z81" target="_blank">DE</a> | <a href="https://www.amazon.nl/dp/B0FT31Q7H7" target="_blank">NL</a></p>
         </div>
-        <div class="book-card">
-            <img src="YOUR-COVER-IMAGE.jpg" alt="Book Title">
-            <h2 class="book-title">Book Title Here</h2>
-            <p class="book-desc">Short description of the book goes here.</p>
-            <a href="https://www.amazon.com/dp/ASIN" class="buy-button" target="_blank">Buy on Amazon</a>
-            <p class="also-on">Also: <a href="https://www.amazon.co.uk/dp/ASIN" target="_blank">UK</a> | <a href="https://www.amazon.com.au/dp/ASIN" target="_blank">AU</a></p>
-        </div>
-
-        -->
 
     </div>
-
-    <div class="coming-soon">
-        <div class="cs-icon">&ldquo;</div>
-        <h2>Books Coming Soon</h2>
-        <p>David P. Scott's collection will appear here. Add your book cards to this page when you're ready.</p>
-    </div>
-
 </section>
 
 <footer>
