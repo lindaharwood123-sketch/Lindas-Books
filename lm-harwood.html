@@ -88,6 +88,7 @@
         .book-card img { width: 150px; height: 225px; object-fit: cover; border-radius: 3px; box-shadow: 0 6px 18px rgba(0,0,0,0.18); margin-bottom: 18px; }
         .book-title { font-family: 'Cormorant Garamond', serif; font-size: 1.1em; font-weight: 600; color: var(--charcoal); margin-bottom: 9px; line-height: 1.3; }
         .book-desc { font-size: 0.76em; color: var(--muted); line-height: 1.7; margin-bottom: 16px; font-weight: 300; flex-grow: 1; }
+
         .buy-button {
             display: inline-block; background: #FF9900; color: white;
             padding: 9px 22px; text-decoration: none; border-radius: 3px;
@@ -95,10 +96,35 @@
             transition: background 0.25s; box-shadow: 0 3px 10px rgba(255,153,0,0.3); margin-bottom: 8px;
         }
         .buy-button:hover { background: #e68a00; }
+
+        /* free download button */
+        .free-button {
+            display: inline-block; background: var(--gold); color: white;
+            padding: 9px 22px; text-decoration: none; border-radius: 3px;
+            font-size: 0.73em; font-weight: 600; letter-spacing: 0.06em;
+            transition: background 0.25s; box-shadow: 0 3px 10px rgba(184,136,42,0.3); margin-bottom: 8px;
+        }
+        .free-button:hover { background: var(--gold-light); }
+
+        /* free badge on card */
+        .free-badge {
+            display: inline-block;
+            background: var(--gold);
+            color: white;
+            font-size: 0.6em;
+            font-weight: 600;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            padding: 3px 10px;
+            border-radius: 2px;
+            margin-bottom: 10px;
+        }
+
         .also-on { font-size: 0.7em; color: var(--muted); margin-top: 4px; line-height: 1.8; }
         .also-on a { color: var(--charcoal); text-decoration: underline; }
         .also-on a:hover { color: var(--gold); }
 
+        /* ── series grid ── */
         .series-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
@@ -196,13 +222,9 @@
         }
         .modal-book-row:hover { box-shadow: 0 4px 16px rgba(0,0,0,0.07); }
 
-        /* thumbnail in modal */
         .modal-book-thumb {
-            width: 70px;
-            min-width: 70px;
-            height: 105px;
-            object-fit: cover;
-            border-radius: 3px;
+            width: 70px; min-width: 70px; height: 105px;
+            object-fit: cover; border-radius: 3px;
             box-shadow: 0 3px 10px rgba(0,0,0,0.18);
         }
 
@@ -248,63 +270,27 @@
 <header class="hero">
     <p class="hero-eyebrow">Author Collection</p>
     <h1><em>L.M.</em> Harwood</h1>
-    <p class="hero-sub">Practical guides, true stories and creative non-fiction that inform, inspire and challenge the way you see the world around you. Features both full-length books and a Short Read Series (scroll down for the series).</p>
+    <p class="hero-sub">Practical guides, true stories and creative non-fiction that inform, inspire and challenge the way you see the world around you.</p>
 </header>
 
 <div class="section-wrap">
-    
-    <div class="section-heading"><h2>Books (Scroll down for Short Read Series)</h2></div>
-    <div class="books-grid">
-         <div class="book-card">
-            <img src="cover_grandparents.jpg" alt="The Forgotten Grandparents">
-            <h2 class="book-title">A Guide to Grief, Legal Rights and Living Fully Again When You Have an Estranged Adult Children</h2>
-            <p class="book-desc">You are not alone, There is Hope, Healing and a Future Ahead</p>
-            <a href="https://www.amazon.com/dp/B0H4MJ2RGM" class="buy-button" target="_blank">Buy on Amazon</a></p>
-        </div>
+
+    <!-- FREE BOOK -->
+    <div class="section-heading"><h2>Free Book</h2></div>
+    <div class="books-grid" style="margin-bottom: 60px;">
         <div class="book-card">
-            <img src="cover_workbook.jpg" alt="Still the Parent Workbook">
-            <h2 class="book-title">A Practical Workbook for Parents with Estranged Adult Children</h2>
-            <p class="book-desc">Exercises and Affirmations to help the estranged parent move on - one step at a time</p>
-            <a href="https://www.amazon.com/dp/B0H4CTF7DH" class="buy-button" target="_blank">Buy on Amazon</a></p>
+            <span class="free-badge">Free Download</span>
+            <img src="hidden_cover.jpg" alt="The Hidden Grievers">
+            <h2 class="book-title">The Hidden Grievers</h2>
+            <p class="book-desc">A Guide for Fathers, Grandparents and In-Laws — Surviving, Healing and Living Fully Again After the Estrangement of an Adult Child</p>
+            <a href="the_hidden_grievers_book.pdf" class="free-button" target="_blank">Download Free</a>
         </div>
-         <div class="book-card">
-            <img src="cover_adult_child.jpg" alt="A Guide for Parents with Estranged Adult Children">
-            <h2 class="book-title">A Guide for Parents with Estranged Adult Children</h2>
-            <p class="book-desc">Combining psychology, neuroscience and lived experience to help you survive,heal and live fully again</p>
-            <a href="https://www.amazon.com/dp/B0GZS34R3W" class="buy-button" target="_blank">Buy on Amazon</a></p>
-        </div>
-          <div class="book-card">
-            <img src="cover_dad.jpg" alt="Am I a Good Dad">
-            <h2 class="book-title">Am I a Good Dad</h2>
-            <p class="book-desc">The Honest Guide for Dad’s Navigating Pressure, Doubt and the Reality of Raising Kids Without a Manual</p>
-            <a href="https://www.amazon.com/dp/B0H4TWT5DH" class="buy-button" target="_blank">Buy on Amazon</a></p>
-        </div>
-         <div class="book-card">
-            <img src="cover_bad_mom.jpg" alt="I am a Bad Mom">
-            <h2 class="book-title">I am a bad Mom</h2>
-            <p class="book-desc">The Honest Guide for Moms Dealing with Guilt, Burnout, and the Messy Reality of Motherhood</p>
-            <a href="https://www.amazon.com/dp/B0GX84CVMM" class="buy-button" target="_blank">Buy on Amazon</a></p>
-        </div>
-         <div class="book-card">
-            <img src="Burn Cover Amazon.jpg" alt="Burnout Recovery Handbook">
-            <h2 class="book-title">Burnout Recovery Handbook</h2>
-            <p class="book-desc">The Complete Guide to Workplace Stress, Mental Health and Resilience</p>
-            <a href="https://www.amazon.com/dp/B0FCSKPXT8" class="buy-button" target="_blank">Buy on Amazon</a>
-            <p class="also-on">Also: <a href="https://www.amazon.co.uk/dp/B0FCYBM369" target="_blank">UK</a> | <a href="https://www.amazon.es/dp/B0FCYBM369" target="_blank">ES</a> | <a href="https://www.amazon.com.au/dp/B0FCYBM369" target="_blank">AU</a> | <a href="https://www.amazon.de/dp/B0FCYBM369" target="_blank">DE</a> | <a href="https://www.amazon.nl/dp/B0FCYBM369" target="_blank">NL</a></p>
-        </div>
-         <div class="book-card">
-            <img src="Memory.jpg" alt="Who Owns Your Memory">
-            <h2 class="book-title">Who Owns Your Memory</h2>
-            <p class="book-desc">Inside the race to hack, delete &amp; control the human mind</p>
-            <a href="https://www.amazon.com/dp/B0FD8ZMQB5" class="buy-button" target="_blank">Buy on Amazon</a>
-            <p class="also-on">Also: <a href="https://www.amazon.co.uk/dp/B0FDB17JSQ" target="_blank">UK</a> | <a href="https://www.amazon.es/dp/B0FD8ZMQB5" target="_blank">ES</a> | <a href="https://www.amazon.com.au/dp/B0FDB17JSQ" target="_blank">AU</a> | <a href="https://www.amazon.de/dp/B0FDB17JSQ" target="_blank">DE</a> | <a href="https://www.amazon.nl/dp/B0FDB17JSQ" target="_blank">NL</a></p>
-        </div>
-         <div class="book-card">
-            <img src="abandon_cover.jpg" alt="I Still Love My Parents But They Abandoned Me">
-            <h2 class="book-title">I Still Love My Parents But They Abandoned Me</h2>
-            <p class="book-desc">It's not your fault. You can heal. You can live a full life. This book is not about reconciliation its about how to move on after abandonment.</p>
-             <a href="https://www.amazon.com/dp/B0H21PQCH9" class="buy-button" target="_blank">Buy on Amazon</a></p>
-         </div>
+    </div>
+
+    <!-- BOOKS -->
+    <div class="section-heading"><h2>Books</h2></div>
+    <div class="books-grid">
+
         <div class="book-card">
             <img src="Bell Final Cover.jpg" alt="The Forbidden Love Affair of Gertrude Bell">
             <h2 class="book-title">The Forbidden Love Affair of Gertrude Bell</h2>
@@ -319,7 +305,15 @@
             <p class="book-desc">20 Essential skills to transform your team into high performers</p>
             <a href="https://www.amazon.com/dp/B0FBX7MQSN" class="buy-button" target="_blank">Buy on Amazon</a>
             <p class="also-on">Also: <a href="https://www.amazon.co.uk/dp/B0FC463BNC" target="_blank">UK</a> | <a href="https://www.amazon.es/dp/B0FBX7MQSN" target="_blank">ES</a> | <a href="https://www.amazon.com.au/dp/B0FC463BNC" target="_blank">AU</a> | <a href="https://www.amazon.de/dp/B0FC463BNC" target="_blank">DE</a> | <a href="https://www.amazon.nl/dp/B0FC463BNC" target="_blank">NL</a></p>
-        </div>       
+        </div>
+
+        <div class="book-card">
+            <img src="Burn Cover Amazon.jpg" alt="Burnout Recovery Handbook">
+            <h2 class="book-title">Burnout Recovery Handbook</h2>
+            <p class="book-desc">The Complete Guide to Workplace Stress, Mental Health and Resilience</p>
+            <a href="https://www.amazon.com/dp/B0FCSKPXT8" class="buy-button" target="_blank">Buy on Amazon</a>
+            <p class="also-on">Also: <a href="https://www.amazon.co.uk/dp/B0FCYBM369" target="_blank">UK</a> | <a href="https://www.amazon.es/dp/B0FCYBM369" target="_blank">ES</a> | <a href="https://www.amazon.com.au/dp/B0FCYBM369" target="_blank">AU</a> | <a href="https://www.amazon.de/dp/B0FCYBM369" target="_blank">DE</a> | <a href="https://www.amazon.nl/dp/B0FCYBM369" target="_blank">NL</a></p>
+        </div>
 
         <div class="book-card">
             <img src="Attention Cover 1.jpg" alt="Who Owns Your Attention">
@@ -327,6 +321,14 @@
             <p class="book-desc">How Silicon Valley hijacked your mind and rewrote your future</p>
             <a href="https://www.amazon.com/dp/B0FHG1BF3P" class="buy-button" target="_blank">Buy on Amazon</a>
             <p class="also-on">Also: <a href="https://www.amazon.co.uk/dp/B0FHFWY8Z9" target="_blank">UK</a> | <a href="https://www.amazon.es/dp/B0FHG1BF3P" target="_blank">ES</a> | <a href="https://www.amazon.com.au/dp/B0FHFWY8Z9" target="_blank">AU</a> | <a href="https://www.amazon.de/dp/B0FHFWY8Z9" target="_blank">DE</a> | <a href="https://www.amazon.nl/dp/B0FHFWY8Z9" target="_blank">NL</a></p>
+        </div>
+
+        <div class="book-card">
+            <img src="Memory.jpg" alt="Who Owns Your Memory">
+            <h2 class="book-title">Who Owns Your Memory</h2>
+            <p class="book-desc">Inside the race to hack, delete &amp; control the human mind</p>
+            <a href="https://www.amazon.com/dp/B0FD8ZMQB5" class="buy-button" target="_blank">Buy on Amazon</a>
+            <p class="also-on">Also: <a href="https://www.amazon.co.uk/dp/B0FDB17JSQ" target="_blank">UK</a> | <a href="https://www.amazon.es/dp/B0FD8ZMQB5" target="_blank">ES</a> | <a href="https://www.amazon.com.au/dp/B0FDB17JSQ" target="_blank">AU</a> | <a href="https://www.amazon.de/dp/B0FDB17JSQ" target="_blank">DE</a> | <a href="https://www.amazon.nl/dp/B0FDB17JSQ" target="_blank">NL</a></p>
         </div>
 
         <div class="book-card">
@@ -352,13 +354,6 @@
             <a href="https://www.amazon.com/dp/B0FCFXXCHC" class="buy-button" target="_blank">Buy on Amazon</a>
             <p class="also-on">Also: <a href="https://www.amazon.com.au/dp/B0FC3KPQPH" target="_blank">AU</a></p>
         </div>
-         <div class="book-card">
-            <img src="Contractors_blueprint_cover.jpg" alt="Tips for Tradies">
-            <h2 class="book-title">The Contractor's Startup Blueprint</h2>
-            <p class="book-desc">Tips for Starting a Contractor's Business in the Modern Era</p>
-            <a href="https://www.amazon.com/dp/B0GP6LNDW9" class="buy-button" target="_blank">Buy on Amazon</a>
-            <p ></p>
-         </div>
 
         <div class="book-card">
             <img src="30 secrets cover.jpg" alt="30 Secrets">
@@ -448,7 +443,7 @@
                 <img src="1_Verbal_CommunicationCover.jpg" alt="Verbal Communication at Work" class="modal-book-thumb">
                 <div class="modal-book-info">
                     <h4 class="modal-book-title">Verbal Communication at Work</h4>
-                    <p class="modal-book-desc">A Quick Guide to Clear, Effective and Confident Workplace Speaking — Master the art of speaking professionally in any workplace situation</p>
+                    <p class="modal-book-desc">A Quick Guide to Clear, Effective and Confident Workplace Speaking</p>
                     <a href="https://www.amazon.com/dp/B0GDQT2XXX" class="modal-buy" target="_blank">Buy on Amazon</a>
                 </div>
             </div>
@@ -466,7 +461,7 @@
                 <img src="1_Work_Functioncover.jpg" alt="Workplace Functions & Social Etiquette" class="modal-book-thumb">
                 <div class="modal-book-info">
                     <h4 class="modal-book-title">Workplace Functions &amp; Social Etiquette</h4>
-                    <p class="modal-book-desc">A Short Guide to Professional Conduct at Workplace Events — Navigate Professional Social Situations with Confidence and Grace</p>
+                    <p class="modal-book-desc">A Short Guide to Professional Conduct at Workplace Events</p>
                     <a href="https://www.amazon.com/dp/B0GDQZT5VQ" class="modal-buy" target="_blank">Buy on Amazon</a>
                 </div>
             </div>
@@ -497,7 +492,7 @@
                 <img src="2_Problem_solving.jpg" alt="Problem Solving & Critical Thinking" class="modal-book-thumb">
                 <div class="modal-book-info">
                     <h4 class="modal-book-title">Problem Solving &amp; Critical Thinking</h4>
-                    <p class="modal-book-desc">A Fast Framework for Better Workplace Decisions — Develop the analytical skills every worker needs to tackle workplace challenges</p>
+                    <p class="modal-book-desc">A Fast Framework for Better Workplace Decisions</p>
                     <a href="https://www.amazon.com/dp/B0DTYWVV7C" class="modal-buy" target="_blank">Buy on Amazon</a>
                 </div>
             </div>
@@ -506,7 +501,7 @@
                 <img src="2_Business_Operations.jpg" alt="Business Operations and Processes" class="modal-book-thumb">
                 <div class="modal-book-info">
                     <h4 class="modal-book-title">Business Operations and Processes</h4>
-                    <p class="modal-book-desc">A Short Read on How Workflow Really Functions — Understand how businesses actually work behind the scenes</p>
+                    <p class="modal-book-desc">A Short Read on How Workflow Really Functions</p>
                     <a href="https://www.amazon.com/dp/B0GDXTR552" class="modal-buy" target="_blank">Buy on Amazon</a>
                 </div>
             </div>
@@ -515,7 +510,7 @@
                 <img src="2_Industry_knowledge.jpg" alt="Industry Knowledge & Competitive Awareness" class="modal-book-thumb">
                 <div class="modal-book-info">
                     <h4 class="modal-book-title">Industry Knowledge &amp; Competitive Awareness</h4>
-                    <p class="modal-book-desc">A Short Read on Understanding Markets &amp; Competitors — Develop the business acumen that sets employees apart</p>
+                    <p class="modal-book-desc">A Short Read on Understanding Markets &amp; Competitors</p>
                     <a href="https://www.amazon.com/dp/B0GDGJ4XD5" class="modal-buy" target="_blank">Buy on Amazon</a>
                 </div>
             </div>
@@ -524,7 +519,7 @@
                 <img src="2_Mathematics.jpg" alt="Mathematics for Modern Business" class="modal-book-thumb">
                 <div class="modal-book-info">
                     <h4 class="modal-book-title">Mathematics for Modern Business</h4>
-                    <p class="modal-book-desc">A Short Guide to Percentages, Depreciation &amp; Break Even — Master the numbers skills every business needs</p>
+                    <p class="modal-book-desc">A Short Guide to Percentages, Depreciation &amp; Break Even</p>
                     <a href="https://www.amazon.com/dp/B0GDYDHY2L" class="modal-buy" target="_blank">Buy on Amazon</a>
                 </div>
             </div>
@@ -546,7 +541,7 @@
                 <img src="3_Bookkeeping.jpg" alt="Bookkeeping in the Cloud Era" class="modal-book-thumb">
                 <div class="modal-book-info">
                     <h4 class="modal-book-title">Bookkeeping in the Cloud Era</h4>
-                    <p class="modal-book-desc">A Quick Guide to Modern Accounting Systems — Understand modern bookkeeping essentials in today's digital business environment</p>
+                    <p class="modal-book-desc">A Quick Guide to Modern Accounting Systems</p>
                     <a href="https://www.amazon.com/dp/B0GJZXVFRL" class="modal-buy" target="_blank">Buy on Amazon</a>
                 </div>
             </div>
@@ -555,7 +550,7 @@
                 <img src="3_Financial_Statements.jpg" alt="Financial Statements Made Simple" class="modal-book-thumb">
                 <div class="modal-book-info">
                     <h4 class="modal-book-title">Financial Statements Made Simple</h4>
-                    <p class="modal-book-desc">A Short Read on Profit &amp; Loss, Balance Sheet and Key Ratios — Demystify business financial statements and learn to read the numbers that matter</p>
+                    <p class="modal-book-desc">A Short Read on Profit &amp; Loss, Balance Sheet and Key Ratios</p>
                     <a href="https://www.amazon.com/dp/B0GK15KV32" class="modal-buy" target="_blank">Buy on Amazon</a>
                 </div>
             </div>
@@ -564,7 +559,7 @@
                 <img src="3_Payroll.jpg" alt="Payroll Essentials for Beginners" class="modal-book-thumb">
                 <div class="modal-book-info">
                     <h4 class="modal-book-title">Payroll Essentials for Beginners</h4>
-                    <p class="modal-book-desc">A Quick Guide to Pay, Deductions and Remote Work Rules — Master the fundamentals of payroll processing and employee compensation</p>
+                    <p class="modal-book-desc">A Quick Guide to Pay, Deductions and Remote Work Rules</p>
                     <a href="https://www.amazon.com/dp/B0GJZXXJN7" class="modal-buy" target="_blank">Buy on Amazon</a>
                 </div>
             </div>
@@ -573,7 +568,7 @@
                 <img src="3_Legal_Compliance.jpg" alt="Legal & Compliance Essentials for Business" class="modal-book-thumb">
                 <div class="modal-book-info">
                     <h4 class="modal-book-title">Legal &amp; Compliance Essentials for Business</h4>
-                    <p class="modal-book-desc">A Quick Guide for Everyday Workplace Decisions — Navigate workplace legal requirements with confidence</p>
+                    <p class="modal-book-desc">A Quick Guide for Everyday Workplace Decisions</p>
                     <a href="https://www.amazon.com/dp/B0GJZYHJNW" class="modal-buy" target="_blank">Buy on Amazon</a>
                 </div>
             </div>
@@ -582,7 +577,7 @@
                 <img src="3_Modern_Records_Management.jpg" alt="Modern Records Management" class="modal-book-thumb">
                 <div class="modal-book-info">
                     <h4 class="modal-book-title">Modern Records Management</h4>
-                    <p class="modal-book-desc">A Short Guide to Digital Filing and Document Management Control — Master digital and physical record-keeping in today's business environment</p>
+                    <p class="modal-book-desc">A Short Guide to Digital Filing and Document Management Control</p>
                     <a href="https://www.amazon.com/dp/B0GK161JB9" class="modal-buy" target="_blank">Buy on Amazon</a>
                 </div>
             </div>
@@ -604,7 +599,7 @@
                 <img src="4_Mental_Health.jpg" alt="Mental Health in the Workplace" class="modal-book-thumb">
                 <div class="modal-book-info">
                     <h4 class="modal-book-title">Mental Health in the Workplace</h4>
-                    <p class="modal-book-desc">A Practical Short Read for Awareness and Support — Create a mentally healthy workplace and support your own wellbeing</p>
+                    <p class="modal-book-desc">A Practical Short Read for Awareness and Support</p>
                     <a href="https://www.amazon.com/dp/B0GK127GP8" class="modal-buy" target="_blank">Buy on Amazon</a>
                 </div>
             </div>
@@ -614,7 +609,7 @@
                 <div class="modal-book-info">
                     <h4 class="modal-book-title">AI Across Business Operations</h4>
                     <p class="modal-book-desc">A Short Read for Modern Employees covering Artificial Intelligence in all areas of business</p>
-                    <a href="https://www.amazon.com/dp/B0D5VM18S6" class="modal-buy" target="_blank">Buy on Amazon</a>
+                    <a href="https://www.amazon.com/dp/B0D5VM1856" class="modal-buy" target="_blank">Buy on Amazon</a>
                 </div>
             </div>
             <div class="modal-book-row">
