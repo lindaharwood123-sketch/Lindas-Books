@@ -5,10 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Author Collections</title>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Raleway:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-LEP3G9JXRG"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-LEP3G9JXRG');
+    </script>
     <style>
         :root {
             --cream: #f7f3ee;
-            --cream-dark: #ede7de;
             --ink: #1a1410;
             --charcoal: #2e2820;
             --gold: #b8882a;
@@ -26,139 +33,91 @@
             min-height: 100vh;
         }
 
-        .top-bar {
-            background: var(--charcoal);
-            color: var(--border);
-            text-align: center;
-            padding: 10px 20px;
-            font-size: 0.72em;
-            letter-spacing: 0.18em;
-            text-transform: uppercase;
-        }
-
+        /* ── compact hero — no top bar ── */
         .hero {
             text-align: center;
-            padding: 70px 20px 40px;
+            padding: 32px 20px 24px;
             background: var(--cream);
         }
 
         .hero::after {
             content: '';
             display: block;
-            width: 60px;
+            width: 50px;
             height: 2px;
             background: var(--gold);
             margin: 0 auto;
         }
 
         .hero-eyebrow {
-            font-size: 0.7em;
-            letter-spacing: 0.25em;
+            font-size: 0.65em;
+            letter-spacing: 0.28em;
             text-transform: uppercase;
             color: var(--gold);
-            margin-bottom: 18px;
+            margin-bottom: 10px;
             opacity: 0;
             animation: fadeUp 0.6s ease 0.1s forwards;
         }
 
         .hero h1 {
             font-family: 'Cormorant Garamond', serif;
-            font-size: clamp(2.8em, 6vw, 4.8em);
+            font-size: clamp(2.2em, 4.5vw, 3.8em);
             font-weight: 300;
             color: var(--charcoal);
             line-height: 1.1;
-            margin-bottom: 16px;
+            margin-bottom: 0;
             opacity: 0;
             animation: fadeUp 0.6s ease 0.2s forwards;
         }
 
         .hero h1 em { font-style: italic; color: var(--gold); }
 
-        .info-block {
-            max-width: 620px;
-            margin: 28px auto 0;
-            padding: 0 20px;
-            opacity: 0;
-            animation: fadeUp 0.6s ease 0.3s forwards;
-        }
-
-        .info-row {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 12px 0;
-            border-bottom: 1px solid var(--border);
-        }
-
-        .info-row:last-child { border-bottom: none; }
-
-        .info-label {
-            font-size: 0.82em;
-            color: var(--charcoal);
-            font-weight: 400;
-            letter-spacing: 0.02em;
-            line-height: 1.5;
-            padding-right: 20px;
-        }
-
-        .info-link {
-            font-size: 0.78em;
-            color: var(--gold);
-            text-decoration: none;
-            font-weight: 600;
-            letter-spacing: 0.04em;
-            white-space: nowrap;
-            border-bottom: 1px solid rgba(184,136,42,0.35);
-            padding-bottom: 1px;
-            transition: color 0.25s, border-color 0.25s;
-        }
-
-        .info-link:hover { color: var(--gold-light); border-color: var(--gold-light); }
-
-        .authors-section {
-            padding: 50px 24px 70px;
-            max-width: 1400px;
+        /* ── 6 card grid ── */
+        .collections-section {
+            padding: 22px 20px 40px;
+            max-width: 1300px;
             margin: 0 auto;
         }
 
         .section-label {
             text-align: center;
-            font-size: 0.68em;
+            font-size: 0.65em;
             letter-spacing: 0.22em;
             text-transform: uppercase;
             color: var(--muted);
-            margin-bottom: 36px;
+            margin-bottom: 18px;
         }
 
-        /* 4 cards in a row */
         .authors-grid {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 20px;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 14px;
         }
 
         .author-card {
             position: relative;
-            border-radius: 8px;
+            border-radius: 7px;
             overflow: hidden;
             display: block;
             text-decoration: none;
             color: white;
-            aspect-ratio: 1 / 1.6;
-            box-shadow: 0 12px 40px rgba(0,0,0,0.25);
+            aspect-ratio: 1 / 1.38;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.2);
             transition: transform 0.4s ease, box-shadow 0.4s ease;
             opacity: 0;
             animation: fadeUp 0.7s ease forwards;
         }
 
-        .author-card:nth-child(1) { animation-delay: 0.15s; }
-        .author-card:nth-child(2) { animation-delay: 0.28s; }
-        .author-card:nth-child(3) { animation-delay: 0.41s; }
-        .author-card:nth-child(4) { animation-delay: 0.54s; }
+        .author-card:nth-child(1) { animation-delay: 0.10s; }
+        .author-card:nth-child(2) { animation-delay: 0.19s; }
+        .author-card:nth-child(3) { animation-delay: 0.28s; }
+        .author-card:nth-child(4) { animation-delay: 0.37s; }
+        .author-card:nth-child(5) { animation-delay: 0.46s; }
+        .author-card:nth-child(6) { animation-delay: 0.55s; }
 
         .author-card:hover {
-            transform: translateY(-8px) scale(1.01);
-            box-shadow: 0 24px 60px rgba(0,0,0,0.35);
+            transform: translateY(-5px) scale(1.01);
+            box-shadow: 0 16px 44px rgba(0,0,0,0.28);
         }
 
         .card-bg {
@@ -171,21 +130,23 @@
 
         .author-card:hover .card-bg { transform: scale(1.04); }
 
-        .card-bg-harwood          { background-image: url('card-lm-harwood.jpg'); }
-        .card-bg-harwood-business { background-image: url('card-lm-harwood_business.jpg'); }
-        .card-bg-maree            { background-image: url('card-linda-maree.jpg'); }
-        .card-bg-scott            { background-image: url('card-david-scott.jpg'); }
+        .card-bg-series   { background-image: url('card-lm-harwood_series.jpg'); }
+        .card-bg-business { background-image: url('card-lm-harwood_business.jpg'); }
+        .card-bg-harwood  { background-image: url('card-lm-harwood.jpg'); }
+        .card-bg-maree    { background-image: url('card-linda-maree.jpg'); }
+        .card-bg-scott    { background-image: url('card-david-scott.jpg'); }
+        .card-bg-free     { background-image: url('card-free.jpg'); }
 
         .card-overlay {
             position: absolute;
             inset: 0;
             background: linear-gradient(
                 to bottom,
-                rgba(10,6,4,0.55) 0%,
-                rgba(10,6,4,0.0) 35%,
-                rgba(10,6,4,0.0) 55%,
-                rgba(10,6,4,0.75) 80%,
-                rgba(10,6,4,0.92) 100%
+                rgba(10,6,4,0.48) 0%,
+                rgba(10,6,4,0.0) 32%,
+                rgba(10,6,4,0.0) 52%,
+                rgba(10,6,4,0.72) 78%,
+                rgba(10,6,4,0.90) 100%
             );
         }
 
@@ -195,33 +156,33 @@
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            padding: 20px 18px 24px;
+            padding: 14px 14px 18px;
         }
 
         .card-name {
             font-family: 'Cormorant Garamond', serif;
-            font-size: clamp(1.2em, 2vw, 1.8em);
+            font-size: clamp(0.95em, 1.6vw, 1.45em);
             font-weight: 600;
             color: #ffffff;
-            line-height: 1.1;
-            text-shadow: 0 2px 12px rgba(0,0,0,0.7);
+            line-height: 1.15;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.7);
         }
 
         .card-bottom {
             display: flex;
             flex-direction: column;
-            gap: 12px;
+            gap: 8px;
         }
 
         .card-genre {
             display: inline-block;
             background: rgba(184,136,42,0.88);
             color: #fff8ec;
-            font-size: 0.62em;
+            font-size: 0.56em;
             font-weight: 600;
             letter-spacing: 0.12em;
             text-transform: uppercase;
-            padding: 4px 10px;
+            padding: 3px 9px;
             border-radius: 2px;
             align-self: flex-start;
         }
@@ -229,30 +190,29 @@
         .card-cta {
             display: inline-flex;
             align-items: center;
-            gap: 8px;
+            gap: 6px;
             color: #f5ede0;
-            font-size: 0.68em;
+            font-size: 0.6em;
             letter-spacing: 0.16em;
             text-transform: uppercase;
             font-weight: 500;
             border-bottom: 1px solid rgba(255,255,255,0.3);
-            padding-bottom: 3px;
+            padding-bottom: 2px;
             align-self: flex-start;
             transition: color 0.25s, border-color 0.25s;
         }
 
         .author-card:hover .card-cta { color: var(--gold-light); border-color: var(--gold-light); }
         .card-cta::after { content: '→'; transition: transform 0.25s ease; }
-        .author-card:hover .card-cta::after { transform: translateX(4px); }
+        .author-card:hover .card-cta::after { transform: translateX(3px); }
 
         footer {
             background: var(--charcoal);
             color: #8a7d6e;
             text-align: center;
-            padding: 40px 20px;
+            padding: 32px 20px;
             font-size: 0.78em;
             letter-spacing: 0.05em;
-            margin-top: 20px;
         }
 
         footer a { color: var(--gold-light); text-decoration: none; }
@@ -263,108 +223,105 @@
             font-size: 1.4em;
             color: #d0c4b0;
             font-style: italic;
-            margin-bottom: 12px;
+            margin-bottom: 10px;
         }
 
         @keyframes fadeUp {
-            from { opacity: 0; transform: translateY(22px); }
+            from { opacity: 0; transform: translateY(16px); }
             to   { opacity: 1; transform: translateY(0); }
         }
 
-        @media (max-width: 900px) {
-            .authors-grid { grid-template-columns: 1fr 1fr; gap: 16px; }
-        }
-
-        @media (max-width: 480px) {
+        @media (max-width: 768px) {
             .authors-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
             .author-card { aspect-ratio: 2 / 3; }
         }
 
-        @media (max-width: 768px) {
-            .info-row { flex-direction: column; align-items: flex-start; gap: 6px; }
+        @media (max-width: 420px) {
+            .authors-grid { gap: 8px; }
         }
     </style>
-    <!-- Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-LEP3G9JXRG"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-LEP3G9JXRG');
-    </script>
 </head>
 <body>
-
-<div class="top-bar">One Author &nbsp;·&nbsp; Three Voices &nbsp;·&nbsp; Many Worlds</div>
 
 <header class="hero">
     <p class="hero-eyebrow">The Complete Collection</p>
     <h1>Stories Worth <em>Reading</em></h1>
-
-    <div class="info-block">
-        <div class="info-row">
-             <span class="info-label">Download <em>5 Free Connect The Pairs Puzzle</em> by Linda Maree</span>
-            <a href="freepuzzles.pdf" target="_blank" class="info-link">Download free →</a>
-        </div>
-        <div class="info-row">
-            <span class="info-label">Download <em>The Hidden Grievers</em> by L.M. Harwood — completely free</span>
-            <a href="the_hidden_grievers_book.pdf" target="_blank" class="info-link">Download free →</a>
-        </div>
-    </div>
 </header>
 
-<section class="authors-section">
+<section class="collections-section">
     <p class="section-label">Choose your collection</p>
     <div class="authors-grid">
 
-        <!-- L.M. Harwood Non-Fiction -->
+        <!-- Row 1 -->
+        <a href="lm-harwood-series.html" class="author-card">
+            <div class="card-bg card-bg-series"></div>
+            <div class="card-overlay"></div>
+            <div class="card-content">
+                <h2 class="card-name"></h2>
+                <div class="card-bottom">
+                    <span class="card-genre">Workplace Series · Quick Reads</span>
+                    <span class="card-cta">View Collection</span>
+                </div>
+            </div>
+        </a>
+
+        <a href="lm-harwood-business.html" class="author-card">
+            <div class="card-bg card-bg-business"></div>
+            <div class="card-overlay"></div>
+            <div class="card-content">
+                <h2 class="card-name"></h2>
+                <div class="card-bottom">
+                    <span class="card-genre">Business &amp; Professional</span>
+                    <span class="card-cta">View Collection</span>
+                </div>
+            </div>
+        </a>
+
         <a href="lm-harwood.html" class="author-card">
             <div class="card-bg card-bg-harwood"></div>
             <div class="card-overlay"></div>
             <div class="card-content">
                 <h2 class="card-name"></h2>
                 <div class="card-bottom">
-                    <span class="card-genre">L.M. Harwood · Non-Fiction</span>
+                    <span class="card-genre">Non-Fiction &amp; Self Help</span>
                     <span class="card-cta">View Collection</span>
                 </div>
             </div>
         </a>
 
-        <!-- L.M. Harwood Business -->
-        <a href="lm-harwood-business.html" class="author-card">
-            <div class="card-bg card-bg-harwood-business"></div>
-            <div class="card-overlay"></div>
-            <div class="card-content">
-                <h2 class="card-name"></h2>
-                <div class="card-bottom">
-                    <span class="card-genre">L.M. Harwood · Business</span>
-                    <span class="card-cta">View Collection</span>
-                </div>
-            </div>
-        </a>
-
-        <!-- Linda Maree -->
+        <!-- Row 2 -->
         <a href="linda-maree.html" class="author-card">
             <div class="card-bg card-bg-maree"></div>
             <div class="card-overlay"></div>
             <div class="card-content">
                 <h2 class="card-name"></h2>
                 <div class="card-bottom">
-                    <span class="card-genre">Linda Maree · Romance &amp; Children's</span>
+                    <span class="card-genre">Puzzles · Children's · Fiction</span>
                     <span class="card-cta">View Collection</span>
                 </div>
             </div>
         </a>
 
-        <!-- David P. Scott -->
         <a href="david-scott.html" class="author-card">
             <div class="card-bg card-bg-scott"></div>
             <div class="card-overlay"></div>
             <div class="card-content">
                 <h2 class="card-name"></h2>
                 <div class="card-bottom">
-                    <span class="card-genre">David P. Scott · Reimagined Classics</span>
+                    <span class="card-genre">Reimagined Classics</span>
                     <span class="card-cta">View Collection</span>
+                </div>
+            </div>
+        </a>
+
+        <a href="free-downloads.html" class="author-card">
+            <div class="card-bg card-bg-free"></div>
+            <div class="card-overlay"></div>
+            <div class="card-content">
+                <h2 class="card-name"></h2>
+                <div class="card-bottom">
+                    <span class="card-genre">Free Downloads &amp; Articles</span>
+                    <span class="card-cta">Download Free</span>
                 </div>
             </div>
         </a>
