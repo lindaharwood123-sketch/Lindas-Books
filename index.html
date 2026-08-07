@@ -22,6 +22,7 @@
             --gold-light: #d4a843;
             --muted: #4a3f35;
             --border: #ddd5c5;
+            --christmas-red: #8b1a1a;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -33,7 +34,6 @@
             min-height: 100vh;
         }
 
-        /* ── compact hero — no top bar ── */
         .hero {
             text-align: center;
             padding: 18px 20px 14px;
@@ -54,7 +54,7 @@
             letter-spacing: 0.28em;
             text-transform: uppercase;
             color: var(--gold);
-            margin-bottom: 10px;
+            margin-bottom: 8px;
             opacity: 0;
             animation: fadeUp 0.6s ease 0.1s forwards;
         }
@@ -72,9 +72,9 @@
 
         .hero h1 em { font-style: italic; color: var(--gold); }
 
-        /* ── 6 card grid ── */
+        /* ── collections ── */
         .collections-section {
-            padding: 10px 20px 20px;
+            padding: 10px 20px 30px;
             max-width: 1300px;
             margin: 0 auto;
         }
@@ -85,13 +85,99 @@
             letter-spacing: 0.22em;
             text-transform: uppercase;
             color: var(--muted);
-            margin-bottom: 18px;
+            margin-bottom: 14px;
         }
 
+        /* ── outer wrapper: Christmas card left + 6 cards right ── */
+        .grid-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 3fr;
+            gap: 14px;
+            align-items: stretch;
+        }
+
+        /* ── Christmas card — tall, spans full height of both rows ── */
+        .christmas-card {
+            position: relative;
+            border-radius: 10px;
+            overflow: hidden;
+            display: block;
+            text-decoration: none;
+            color: white;
+            box-shadow: 0 8px 28px rgba(139,26,26,0.3);
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+            opacity: 0;
+            animation: fadeUp 0.7s ease 0.1s forwards;
+            border: 2px solid rgba(139,26,26,0.3);
+        }
+
+        .christmas-card:hover {
+            transform: translateY(-5px) scale(1.01);
+            box-shadow: 0 18px 44px rgba(139,26,26,0.4);
+        }
+
+        .christmas-bg {
+            position: absolute;
+            inset: 0;
+            background-image: url('card-christmas.jpg');
+            background-size: cover;
+            background-position: center;
+            transition: transform 0.5s ease;
+        }
+
+        .christmas-card:hover .christmas-bg { transform: scale(1.03); }
+
+        .christmas-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(
+                to top,
+                rgba(80,10,10,0.75) 0%,
+                rgba(80,10,10,0.0) 40%,
+                rgba(80,10,10,0.0) 100%
+            );
+        }
+
+        .christmas-content {
+            position: absolute;
+            bottom: 0; left: 0; right: 0;
+            padding: 16px 16px 20px;
+        }
+
+        .christmas-tag {
+            display: inline-block;
+            background: var(--christmas-red);
+            color: #fff8ec;
+            font-size: 0.58em;
+            font-weight: 600;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            padding: 3px 10px;
+            border-radius: 2px;
+            margin-bottom: 8px;
+        }
+
+        .christmas-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: #fff8ec;
+            font-size: 0.62em;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            font-weight: 600;
+            border-bottom: 1px solid rgba(255,248,236,0.5);
+            padding-bottom: 2px;
+            transition: color 0.25s;
+            display: block;
+        }
+
+        .christmas-card:hover .christmas-cta { color: #ffcc88; }
+
+        /* ── 6 regular cards in 3x2 grid ── */
         .authors-grid {
             display: grid;
-            grid-template-columns: repeat(3, minmax(0, 250px));
-            justify-content: center;
+            grid-template-columns: repeat(3, 1fr);
             gap: 14px;
         }
 
@@ -109,12 +195,12 @@
             animation: fadeUp 0.7s ease forwards;
         }
 
-        .author-card:nth-child(1) { animation-delay: 0.10s; }
-        .author-card:nth-child(2) { animation-delay: 0.19s; }
-        .author-card:nth-child(3) { animation-delay: 0.28s; }
-        .author-card:nth-child(4) { animation-delay: 0.37s; }
-        .author-card:nth-child(5) { animation-delay: 0.46s; }
-        .author-card:nth-child(6) { animation-delay: 0.55s; }
+        .author-card:nth-child(1) { animation-delay: 0.15s; }
+        .author-card:nth-child(2) { animation-delay: 0.22s; }
+        .author-card:nth-child(3) { animation-delay: 0.29s; }
+        .author-card:nth-child(4) { animation-delay: 0.36s; }
+        .author-card:nth-child(5) { animation-delay: 0.43s; }
+        .author-card:nth-child(6) { animation-delay: 0.50s; }
 
         .author-card:hover {
             transform: translateY(-5px) scale(1.01);
@@ -157,12 +243,12 @@
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            padding: 14px 14px 18px;
+            padding: 12px 12px 16px;
         }
 
         .card-name {
             font-family: 'Cormorant Garamond', serif;
-            font-size: clamp(0.95em, 1.6vw, 1.45em);
+            font-size: clamp(0.9em, 1.4vw, 1.3em);
             font-weight: 600;
             color: #ffffff;
             line-height: 1.15;
@@ -172,18 +258,18 @@
         .card-bottom {
             display: flex;
             flex-direction: column;
-            gap: 8px;
+            gap: 7px;
         }
 
         .card-genre {
             display: inline-block;
             background: rgba(184,136,42,0.88);
             color: #fff8ec;
-            font-size: 0.56em;
+            font-size: 0.54em;
             font-weight: 600;
             letter-spacing: 0.12em;
             text-transform: uppercase;
-            padding: 3px 9px;
+            padding: 3px 8px;
             border-radius: 2px;
             align-self: flex-start;
         }
@@ -191,9 +277,9 @@
         .card-cta {
             display: inline-flex;
             align-items: center;
-            gap: 6px;
+            gap: 5px;
             color: #f5ede0;
-            font-size: 0.6em;
+            font-size: 0.56em;
             letter-spacing: 0.16em;
             text-transform: uppercase;
             font-weight: 500;
@@ -211,7 +297,7 @@
             background: var(--charcoal);
             color: #8a7d6e;
             text-align: center;
-            padding: 32px 20px;
+            padding: 28px 20px;
             font-size: 0.78em;
             letter-spacing: 0.05em;
         }
@@ -224,7 +310,7 @@
             font-size: 1.4em;
             color: #d0c4b0;
             font-style: italic;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
         }
 
         @keyframes fadeUp {
@@ -232,13 +318,14 @@
             to   { opacity: 1; transform: translateY(0); }
         }
 
-        @media (max-width: 768px) {
-            .authors-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
-            .author-card { aspect-ratio: 2 / 3; }
+        @media (max-width: 900px) {
+            .grid-wrapper { grid-template-columns: 1fr; }
+            .christmas-card { aspect-ratio: 16 / 7; }
+            .authors-grid { grid-template-columns: 1fr 1fr 1fr; gap: 10px; }
         }
 
-        @media (max-width: 420px) {
-            .authors-grid { gap: 8px; }
+        @media (max-width: 600px) {
+            .authors-grid { grid-template-columns: 1fr 1fr; gap: 8px; }
         }
     </style>
 </head>
@@ -251,83 +338,96 @@
 
 <section class="collections-section">
     <p class="section-label">Choose your collection</p>
-    <div class="authors-grid">
 
-        <!-- Row 1 -->
-        <a href="lm-harwood-series.html" class="author-card">
-            <div class="card-bg card-bg-series"></div>
-            <div class="card-overlay"></div>
-            <div class="card-content">
-                <h2 class="card-name"></h2>
-                <div class="card-bottom">
-                    <span class="card-genre">Workplace Series · Quick Reads</span>
-                    <span class="card-cta">View Collection</span>
-                </div>
+    <div class="grid-wrapper">
+
+        <!-- Christmas card — tall on the left -->
+        <a href="christmas-downloads.html" class="christmas-card">
+            <div class="christmas-bg"></div>
+            <div class="christmas-overlay"></div>
+            <div class="christmas-content">
+                <span class="christmas-tag">🎄 Free Christmas Downloads</span>
+                <span class="christmas-cta">Cards · Invitations · Stories · Templates →</span>
             </div>
         </a>
 
-        <a href="lm-harwood-business.html" class="author-card">
-            <div class="card-bg card-bg-business"></div>
-            <div class="card-overlay"></div>
-            <div class="card-content">
-                <h2 class="card-name"></h2>
-                <div class="card-bottom">
-                    <span class="card-genre">Business &amp; Professional</span>
-                    <span class="card-cta">View Collection</span>
-                </div>
-            </div>
-        </a>
+        <!-- 6 regular cards — 3x2 grid on the right -->
+        <div class="authors-grid">
 
-        <a href="lm-harwood.html" class="author-card">
-            <div class="card-bg card-bg-harwood"></div>
-            <div class="card-overlay"></div>
-            <div class="card-content">
-                <h2 class="card-name"></h2>
-                <div class="card-bottom">
-                    <span class="card-genre">Non-Fiction &amp; Self Help</span>
-                    <span class="card-cta">View Collection</span>
+            <a href="lm-harwood-series.html" class="author-card">
+                <div class="card-bg card-bg-series"></div>
+                <div class="card-overlay"></div>
+                <div class="card-content">
+                    <h2 class="card-name"></h2>
+                    <div class="card-bottom">
+                        <span class="card-genre">Workplace Series · Quick Reads</span>
+                        <span class="card-cta">View Collection</span>
+                    </div>
                 </div>
-            </div>
-        </a>
+            </a>
 
-        <!-- Row 2 -->
-        <a href="linda-maree.html" class="author-card">
-            <div class="card-bg card-bg-maree"></div>
-            <div class="card-overlay"></div>
-            <div class="card-content">
-                <h2 class="card-name"></h2>
-                <div class="card-bottom">
-                    <span class="card-genre">Puzzles · Children's · Fiction</span>
-                    <span class="card-cta">View Collection</span>
+            <a href="lm-harwood-business.html" class="author-card">
+                <div class="card-bg card-bg-business"></div>
+                <div class="card-overlay"></div>
+                <div class="card-content">
+                    <h2 class="card-name"></h2>
+                    <div class="card-bottom">
+                        <span class="card-genre">Business &amp; Professional</span>
+                        <span class="card-cta">View Collection</span>
+                    </div>
                 </div>
-            </div>
-        </a>
+            </a>
 
-        <a href="david-scott.html" class="author-card">
-            <div class="card-bg card-bg-scott"></div>
-            <div class="card-overlay"></div>
-            <div class="card-content">
-                <h2 class="card-name"></h2>
-                <div class="card-bottom">
-                    <span class="card-genre">Reimagined Classics</span>
-                    <span class="card-cta">View Collection</span>
+            <a href="lm-harwood.html" class="author-card">
+                <div class="card-bg card-bg-harwood"></div>
+                <div class="card-overlay"></div>
+                <div class="card-content">
+                    <h2 class="card-name"></h2>
+                    <div class="card-bottom">
+                        <span class="card-genre">Non-Fiction &amp; Self Help</span>
+                        <span class="card-cta">View Collection</span>
+                    </div>
                 </div>
-            </div>
-        </a>
+            </a>
 
-        <a href="free-downloads.html" class="author-card">
-            <div class="card-bg card-bg-free"></div>
-            <div class="card-overlay"></div>
-            <div class="card-content">
-                <h2 class="card-name"></h2>
-                <div class="card-bottom">
-                    <span class="card-genre">Free Downloads &amp; Articles</span>
-                    <span class="card-cta">Download Free</span>
+            <a href="linda-maree.html" class="author-card">
+                <div class="card-bg card-bg-maree"></div>
+                <div class="card-overlay"></div>
+                <div class="card-content">
+                    <h2 class="card-name"></h2>
+                    <div class="card-bottom">
+                        <span class="card-genre">Puzzles · Children's · Fiction</span>
+                        <span class="card-cta">View Collection</span>
+                    </div>
                 </div>
-            </div>
-        </a>
+            </a>
 
-    </div>
+            <a href="david-scott.html" class="author-card">
+                <div class="card-bg card-bg-scott"></div>
+                <div class="card-overlay"></div>
+                <div class="card-content">
+                    <h2 class="card-name"></h2>
+                    <div class="card-bottom">
+                        <span class="card-genre">Reimagined Classics</span>
+                        <span class="card-cta">View Collection</span>
+                    </div>
+                </div>
+            </a>
+
+            <a href="free-downloads.html" class="author-card">
+                <div class="card-bg card-bg-free"></div>
+                <div class="card-overlay"></div>
+                <div class="card-content">
+                    <h2 class="card-name"></h2>
+                    <div class="card-bottom">
+                        <span class="card-genre">Free Downloads &amp; Articles</span>
+                        <span class="card-cta">Download Free</span>
+                    </div>
+                </div>
+            </a>
+
+        </div><!-- /authors-grid -->
+    </div><!-- /grid-wrapper -->
 </section>
 
 <footer>
