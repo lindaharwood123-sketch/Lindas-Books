@@ -1,398 +1,719 @@
 <!DOCTYPE html>
+
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Author Collections</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Raleway:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <!-- Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-LEP3G9JXRG"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-LEP3G9JXRG');
-    </script>
-    <style>
-        :root {
-            --cream: #f7f3ee;
-            --ink: #1a1410;
-            --charcoal: #2e2820;
-            --gold: #b8882a;
-            --gold-light: #d4a843;
-            --muted: #4a3f35;
-            --border: #ddd5c5;
-        }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+<meta charset="UTF-8">
 
-        body {
-            font-family: 'Raleway', sans-serif;
-            background-color: var(--cream);
-            color: var(--ink);
-            min-height: 100vh;
-        }
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        .hero {
-            text-align: center;
-            padding: 18px 20px 14px;
-            background: var(--cream);
-        }
+<title>Author Collections</title>
 
-        .hero::after {
-            content: '';
-            display: block;
-            width: 50px;
-            height: 2px;
-            background: var(--gold);
-            margin: 0 auto;
-        }
+<link
+href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Raleway:wght@300;400;500;600&display=swap"
+rel="stylesheet">
 
-        .hero-eyebrow {
-            font-size: 0.65em;
-            letter-spacing: 0.28em;
-            text-transform: uppercase;
-            color: var(--gold);
-            margin-bottom: 8px;
-            opacity: 0;
-            animation: fadeUp 0.6s ease 0.1s forwards;
-        }
+<!-- Google Analytics -->
 
-        .hero h1 {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: clamp(1.6em, 3vw, 2.6em);
-            font-weight: 300;
-            color: var(--charcoal);
-            line-height: 1.1;
-            margin-bottom: 0;
-            opacity: 0;
-            animation: fadeUp 0.6s ease 0.2s forwards;
-        }
+<script async
+src="https://www.googletagmanager.com/gtag/js?id=G-LEP3G9JXRG"></script>
 
-        .hero h1 em { font-style: italic; color: var(--gold); }
+<script>
 
-        .collections-section {
-            padding: 10px 20px 30px;
-            max-width: 1100px;
-            margin: 0 auto;
-        }
+window.dataLayer = window.dataLayer || [];
 
-        .section-label {
-            text-align: center;
-            font-size: 0.65em;
-            letter-spacing: 0.22em;
-            text-transform: uppercase;
-            color: var(--muted);
-            margin-bottom: 14px;
-        }
+function gtag(){dataLayer.push(arguments);}
 
-        /* ── row 1: 4 cards ── */
-        .row-top {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 12px;
-            margin-bottom: 12px;
-        }
+gtag('js', new Date());
 
-        /* ── row 2: 3 cards centred ── */
-        .row-bottom {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 12px;
-            max-width: 825px;
-            margin: 0 auto;
-        }
+gtag('config', 'G-LEP3G9JXRG');
 
-        /* ── shared card styles ── */
-        .author-card {
-            position: relative;
-            border-radius: 7px;
-            overflow: hidden;
-            display: block;
-            text-decoration: none;
-            color: white;
-            aspect-ratio: 1 / 1;
-            box-shadow: 0 8px 24px rgba(0,0,0,0.2);
-            transition: transform 0.4s ease, box-shadow 0.4s ease;
-            opacity: 0;
-            animation: fadeUp 0.7s ease forwards;
-        }
+</script>
 
-        .row-top  .author-card:nth-child(1) { animation-delay: 0.10s; }
-        .row-top  .author-card:nth-child(2) { animation-delay: 0.18s; }
-        .row-top  .author-card:nth-child(3) { animation-delay: 0.26s; }
-        .row-top  .author-card:nth-child(4) { animation-delay: 0.34s; }
-        .row-bottom .author-card:nth-child(1) { animation-delay: 0.42s; }
-        .row-bottom .author-card:nth-child(2) { animation-delay: 0.50s; }
-        .row-bottom .author-card:nth-child(3) { animation-delay: 0.58s; }
+<style>
 
-        .author-card:hover {
-            transform: translateY(-5px) scale(1.01);
-            box-shadow: 0 16px 44px rgba(0,0,0,0.28);
-        }
+:root {
 
-        .card-bg {
-            position: absolute;
-            inset: 0;
-            background-size: cover;
-            background-position: center;
-            transition: transform 0.5s ease;
-        }
+--cream: #f7f3ee;
 
-        .author-card:hover .card-bg { transform: scale(1.04); }
+--ink: #1a1410;
 
-        .card-bg-christmas { background-image: url('card-christmas.jpg'); }
-        .card-bg-series    { background-image: url('card-lm-harwood_series.jpg'); }
-        .card-bg-business  { background-image: url('card-lm-harwood_business.jpg'); }
-        .card-bg-harwood   { background-image: url('card-lm-harwood.jpg'); }
-        .card-bg-maree     { background-image: url('card-linda-maree.jpg'); }
-        .card-bg-scott     { background-image: url('card-david-scott.jpg'); }
-        .card-bg-free      { background-image: url('card-free.jpg'); }
+--charcoal: #2e2820;
 
-        .card-overlay {
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(
-                to bottom,
-                rgba(10,6,4,0.38) 0%,
-                rgba(10,6,4,0.0) 30%,
-                rgba(10,6,4,0.0) 52%,
-                rgba(10,6,4,0.72) 78%,
-                rgba(10,6,4,0.90) 100%
-            );
-        }
+--gold: #b8882a;
 
-        /* Christmas card gets a festive red overlay instead */
-        .card-christmas-overlay {
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(
-                to bottom,
-                rgba(80,10,10,0.15) 0%,
-                rgba(80,10,10,0.0) 30%,
-                rgba(80,10,10,0.0) 55%,
-                rgba(80,10,10,0.70) 80%,
-                rgba(80,10,10,0.88) 100%
-            );
-        }
+--gold-light: #d4a843;
 
-        .card-content {
-            position: absolute;
-            inset: 0;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            padding: 11px 11px 14px;
-        }
+--muted: #4a3f35;
 
-        .card-name {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: clamp(0.8em, 1.2vw, 1.2em);
-            font-weight: 600;
-            color: #ffffff;
-            line-height: 1.15;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.7);
-        }
+--border: #ddd5c5;
 
-        .card-bottom {
-            display: flex;
-            flex-direction: column;
-            gap: 6px;
-        }
+}
 
-        .card-genre {
-            display: inline-block;
-            background: rgba(184,136,42,0.88);
-            color: #fff8ec;
-            font-size: 0.52em;
-            font-weight: 600;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            padding: 3px 7px;
-            border-radius: 2px;
-            align-self: flex-start;
-        }
+* { margin: 0; padding: 0; box-sizing: border-box; }
 
-        /* Christmas tag in red */
-        .card-genre-christmas {
-            display: inline-block;
-            background: rgba(139,26,26,0.9);
-            color: #fff8ec;
-            font-size: 0.52em;
-            font-weight: 600;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            padding: 3px 7px;
-            border-radius: 2px;
-            align-self: flex-start;
-        }
+body {
 
-        .card-cta {
-            display: inline-flex;
-            align-items: center;
-            gap: 5px;
-            color: #f5ede0;
-            font-size: 0.54em;
-            letter-spacing: 0.14em;
-            text-transform: uppercase;
-            font-weight: 500;
-            border-bottom: 1px solid rgba(255,255,255,0.3);
-            padding-bottom: 2px;
-            align-self: flex-start;
-            transition: color 0.25s, border-color 0.25s;
-        }
+font-family: 'Raleway', sans-serif;
 
-        .author-card:hover .card-cta { color: var(--gold-light); border-color: var(--gold-light); }
-        .card-cta::after { content: '→'; transition: transform 0.25s ease; }
-        .author-card:hover .card-cta::after { transform: translateX(3px); }
+background-color: var(--cream);
 
-        footer {
-            background: var(--charcoal);
-            color: #8a7d6e;
-            text-align: center;
-            padding: 28px 20px;
-            font-size: 0.78em;
-            letter-spacing: 0.05em;
-        }
+color: var(--ink);
 
-        footer a { color: var(--gold-light); text-decoration: none; }
-        footer a:hover { text-decoration: underline; }
+min-height: 100vh;
 
-        footer .footer-name {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1.4em;
-            color: #d0c4b0;
-            font-style: italic;
-            margin-bottom: 8px;
-        }
+}
 
-        @keyframes fadeUp {
-            from { opacity: 0; transform: translateY(16px); }
-            to   { opacity: 1; transform: translateY(0); }
-        }
+.hero {
 
-        @media (max-width: 900px) {
-            .row-top    { grid-template-columns: repeat(2, 1fr); }
-            .row-bottom { grid-template-columns: repeat(2, 1fr); max-width: 100%; }
-        }
+text-align: center;
 
-        @media (max-width: 480px) {
-            .row-top    { grid-template-columns: repeat(2, 1fr); gap: 8px; }
-            .row-bottom { grid-template-columns: repeat(2, 1fr); gap: 8px; }
-        }
-    </style>
+padding: 18px 20px 14px;
+
+background: var(--cream);
+
+}
+
+.hero::after {
+
+content: '';
+
+display: block;
+
+width: 50px;
+
+height: 2px;
+
+background: var(--gold);
+
+margin: 0 auto;
+
+}
+
+.hero-eyebrow {
+
+font-size: 0.65em;
+
+letter-spacing: 0.28em;
+
+text-transform: uppercase;
+
+color: var(--gold);
+
+margin-bottom: 8px;
+
+opacity: 0;
+
+animation: fadeUp 0.6s ease 0.1s forwards;
+
+}
+
+.hero h1 {
+
+font-family: 'Cormorant Garamond', serif;
+
+font-size: clamp(1.6em, 3vw, 2.6em);
+
+font-weight: 300;
+
+color: var(--charcoal);
+
+line-height: 1.1;
+
+margin-bottom: 0;
+
+opacity: 0;
+
+animation: fadeUp 0.6s ease 0.2s forwards;
+
+}
+
+.hero h1 em { font-style: italic; color: var(--gold); }
+
+.collections-section {
+
+padding: 10px 20px 30px;
+
+max-width: 1100px;
+
+margin: 0 auto;
+
+}
+
+.section-label {
+
+text-align: center;
+
+font-size: 0.65em;
+
+letter-spacing: 0.22em;
+
+text-transform: uppercase;
+
+color: var(--muted);
+
+margin-bottom: 14px;
+
+}
+
+/* ── row 1: 4 cards ── */
+
+.row-top {
+
+display: grid;
+
+grid-template-columns: repeat(4, 1fr);
+
+gap: 12px;
+
+margin-bottom: 12px;
+
+}
+
+/* ── row 2: 3 cards centred ── */
+
+.row-bottom {
+
+display: grid;
+
+grid-template-columns: repeat(3, 1fr);
+
+gap: 12px;
+
+max-width: 825px;
+
+margin: 0 auto;
+
+}
+
+/* ── shared card styles ── */
+
+.author-card {
+
+position: relative;
+
+border-radius: 7px;
+
+overflow: hidden;
+
+display: block;
+
+text-decoration: none;
+
+color: white;
+
+aspect-ratio: 1 / 1;
+
+box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+
+transition: transform 0.4s ease, box-shadow 0.4s ease;
+
+opacity: 0;
+
+animation: fadeUp 0.7s ease forwards;
+
+}
+
+.row-top .author-card:nth-child(1) { animation-delay: 0.10s; }
+
+.row-top .author-card:nth-child(2) { animation-delay: 0.18s; }
+
+.row-top .author-card:nth-child(3) { animation-delay: 0.26s; }
+
+.row-top .author-card:nth-child(4) { animation-delay: 0.34s; }
+
+.row-bottom .author-card:nth-child(1) { animation-delay: 0.42s; }
+
+.row-bottom .author-card:nth-child(2) { animation-delay: 0.50s; }
+
+.row-bottom .author-card:nth-child(3) { animation-delay: 0.58s; }
+.row-bottom .author-card:nth-child(4) { animation-delay: 0.66s; }
+
+.author-card:hover {
+
+transform: translateY(-5px) scale(1.01);
+
+box-shadow: 0 16px 44px rgba(0,0,0,0.28);
+
+}
+
+.card-bg {
+
+position: absolute;
+
+inset: 0;
+
+background-size: cover;
+
+background-position: center;
+
+transition: transform 0.5s ease;
+
+}
+
+.author-card:hover .card-bg { transform: scale(1.04); }
+
+.card-bg-christmas { background-image: url('card-christmas.jpg'); }
+
+.card-bg-series { background-image: url('card-lm-harwood_series.jpg'); }
+
+.card-bg-business { background-image:
+url('card-lm-harwood_business.jpg'); }
+
+.card-bg-harwood { background-image: url('card-lm-harwood.jpg'); }
+
+.card-bg-maree { background-image: url('card-linda-maree.jpg'); }
+
+.card-bg-scott { background-image: url('card-david-scott.jpg'); }
+
+.card-bg-free { background-image: url('card-free.jpg'); }
+.card-bg-romance { background-image: url('card_linda_maree_romance.jpg'); }
+
+.card-overlay {
+
+position: absolute;
+
+inset: 0;
+
+background: linear-gradient(
+
+to bottom,
+
+rgba(10,6,4,0.38) 0%,
+
+rgba(10,6,4,0.0) 30%,
+
+rgba(10,6,4,0.0) 52%,
+
+rgba(10,6,4,0.72) 78%,
+
+rgba(10,6,4,0.90) 100%
+
+);
+
+}
+
+/* Christmas card gets a festive red overlay instead */
+
+.card-christmas-overlay {
+
+position: absolute;
+
+inset: 0;
+
+background: linear-gradient(
+
+to bottom,
+
+rgba(80,10,10,0.15) 0%,
+
+rgba(80,10,10,0.0) 30%,
+
+rgba(80,10,10,0.0) 55%,
+
+rgba(80,10,10,0.70) 80%,
+
+rgba(80,10,10,0.88) 100%
+
+);
+
+}
+
+.card-content {
+
+position: absolute;
+
+inset: 0;
+
+display: flex;
+
+flex-direction: column;
+
+justify-content: space-between;
+
+padding: 11px 11px 14px;
+
+}
+
+.card-name {
+
+font-family: 'Cormorant Garamond', serif;
+
+font-size: clamp(0.8em, 1.2vw, 1.2em);
+
+font-weight: 600;
+
+color: #ffffff;
+
+line-height: 1.15;
+
+text-shadow: 0 2px 10px rgba(0,0,0,0.7);
+
+}
+
+.card-bottom {
+
+display: flex;
+
+flex-direction: column;
+
+gap: 6px;
+
+}
+
+.card-genre {
+
+display: inline-block;
+
+background: rgba(184,136,42,0.88);
+
+color: #fff8ec;
+
+font-size: 0.52em;
+
+font-weight: 600;
+
+letter-spacing: 0.1em;
+
+text-transform: uppercase;
+
+padding: 3px 7px;
+
+border-radius: 2px;
+
+align-self: flex-start;
+
+}
+
+/* Christmas tag in red */
+
+.card-genre-christmas {
+
+display: inline-block;
+
+background: rgba(139,26,26,0.9);
+
+color: #fff8ec;
+
+font-size: 0.52em;
+
+font-weight: 600;
+
+letter-spacing: 0.1em;
+
+text-transform: uppercase;
+
+padding: 3px 7px;
+
+border-radius: 2px;
+
+align-self: flex-start;
+
+}
+
+.card-cta {
+
+display: inline-flex;
+
+align-items: center;
+
+gap: 5px;
+
+color: #f5ede0;
+
+font-size: 0.54em;
+
+letter-spacing: 0.14em;
+
+text-transform: uppercase;
+
+font-weight: 500;
+
+border-bottom: 1px solid rgba(255,255,255,0.3);
+
+padding-bottom: 2px;
+
+align-self: flex-start;
+
+transition: color 0.25s, border-color 0.25s;
+
+}
+
+.author-card:hover .card-cta { color: var(--gold-light); border-color:
+var(--gold-light); }
+
+.card-cta::after { content: '→'; transition: transform 0.25s ease; }
+
+.author-card:hover .card-cta::after { transform: translateX(3px); }
+
+footer {
+
+background: var(--charcoal);
+
+color: #8a7d6e;
+
+text-align: center;
+
+padding: 28px 20px;
+
+font-size: 0.78em;
+
+letter-spacing: 0.05em;
+
+}
+
+footer a { color: var(--gold-light); text-decoration: none; }
+
+footer a:hover { text-decoration: underline; }
+
+footer .footer-name {
+
+font-family: 'Cormorant Garamond', serif;
+
+font-size: 1.4em;
+
+color: #d0c4b0;
+
+font-style: italic;
+
+margin-bottom: 8px;
+
+}
+
+@keyframes fadeUp {
+
+from { opacity: 0; transform: translateY(16px); }
+
+to { opacity: 1; transform: translateY(0); }
+
+}
+
+@media (max-width: 900px) {
+
+.row-top { grid-template-columns: repeat(2, 1fr); }
+
+.row-bottom { grid-template-columns: repeat(2, 1fr); max-width: 100%; }
+
+}
+
+@media (max-width: 480px) {
+
+.row-top { grid-template-columns: repeat(2, 1fr); gap: 8px; }
+
+.row-bottom { grid-template-columns: repeat(2, 1fr); gap: 8px; }
+
+}
+
+</style>
+
 </head>
+
 <body>
 
 <header class="hero">
-    <p class="hero-eyebrow">The Complete Collection</p>
-    <h1>Stories Worth <em>Reading</em></h1>
+
+<p class="hero-eyebrow">The Complete Collection</p>
+
+<h1>Stories Worth <em>Reading</em></h1>
+
 </header>
 
 <section class="collections-section">
-    <p class="section-label">Choose your collection</p>
 
-    <!-- Row 1: Christmas + 3 LM Harwood cards -->
-    <div class="row-top">
+<p class="section-label">Choose your collection</p>
 
-        <a href="christmas-downloads.html" class="author-card">
-            <div class="card-bg card-bg-christmas"></div>
-            <div class="card-christmas-overlay"></div>
-            <div class="card-content">
-                <h2 class="card-name"></h2>
-                <div class="card-bottom">
-                    <span class="card-genre-christmas">🎄 Free Christmas Downloads</span>
-                    <span class="card-cta">Download Free</span>
-                </div>
-            </div>
-        </a>
+<!-- Row 1: Christmas + 3 LM Harwood cards -->
 
-        <a href="lm-harwood-series.html" class="author-card">
-            <div class="card-bg card-bg-series"></div>
-            <div class="card-overlay"></div>
-            <div class="card-content">
-                <h2 class="card-name"></h2>
-                <div class="card-bottom">
-                    <span class="card-genre">Workplace Series · Quick Reads</span>
-                    <span class="card-cta">View Collection</span>
-                </div>
-            </div>
-        </a>
+<div class="row-top">
 
-        <a href="lm-harwood-business.html" class="author-card">
-            <div class="card-bg card-bg-business"></div>
-            <div class="card-overlay"></div>
-            <div class="card-content">
-                <h2 class="card-name"></h2>
-                <div class="card-bottom">
-                    <span class="card-genre">Business &amp; Professional</span>
-                    <span class="card-cta">View Collection</span>
-                </div>
-            </div>
-        </a>
+<a href="christmas-downloads.html" class="author-card">
 
-        <a href="lm-harwood.html" class="author-card">
-            <div class="card-bg card-bg-harwood"></div>
-            <div class="card-overlay"></div>
-            <div class="card-content">
-                <h2 class="card-name"></h2>
-                <div class="card-bottom">
-                    <span class="card-genre">Non-Fiction &amp; Self Help</span>
-                    <span class="card-cta">View Collection</span>
-                </div>
-            </div>
-        </a>
+<div class="card-bg card-bg-christmas"></div>
 
-    </div>
+<div class="card-christmas-overlay"></div>
 
-    <!-- Row 2: Linda Maree, David Scott, Free Downloads — centred -->
-    <div class="row-bottom">
+<div class="card-content">
 
-        <a href="linda-maree.html" class="author-card">
-            <div class="card-bg card-bg-maree"></div>
-            <div class="card-overlay"></div>
-            <div class="card-content">
-                <h2 class="card-name"></h2>
-                <div class="card-bottom">
-                    <span class="card-genre">Puzzles · Children's · Fiction</span>
-                    <span class="card-cta">View Collection</span>
-                </div>
-            </div>
-        </a>
+<h2 class="card-name"></h2>
 
-        <a href="david-scott.html" class="author-card">
-            <div class="card-bg card-bg-scott"></div>
-            <div class="card-overlay"></div>
-            <div class="card-content">
-                <h2 class="card-name"></h2>
-                <div class="card-bottom">
-                    <span class="card-genre">Reimagined Classics</span>
-                    <span class="card-cta">View Collection</span>
-                </div>
-            </div>
-        </a>
+<div class="card-bottom">
 
-        <a href="free-downloads.html" class="author-card">
-            <div class="card-bg card-bg-free"></div>
-            <div class="card-overlay"></div>
-            <div class="card-content">
-                <h2 class="card-name"></h2>
-                <div class="card-bottom">
-                    <span class="card-genre">Free Downloads &amp; Articles</span>
-                    <span class="card-cta">Download Free</span>
-                </div>
-            </div>
-        </a>
+<span class="card-genre-christmas">🎄 Free Christmas Downloads</span>
 
-    </div>
+<span class="card-cta">Download Free</span>
+
+</div>
+
+</div>
+
+</a>
+
+<a href="lm-harwood-series.html" class="author-card">
+
+<div class="card-bg card-bg-series"></div>
+
+<div class="card-overlay"></div>
+
+<div class="card-content">
+
+<h2 class="card-name"></h2>
+
+<div class="card-bottom">
+
+<span class="card-genre">Workplace Series · Quick Reads</span>
+
+<span class="card-cta">View Collection</span>
+
+</div>
+
+</div>
+
+</a>
+
+<a href="lm-harwood-business.html" class="author-card">
+
+<div class="card-bg card-bg-business"></div>
+
+<div class="card-overlay"></div>
+
+<div class="card-content">
+
+<h2 class="card-name"></h2>
+
+<div class="card-bottom">
+
+<span class="card-genre">Business &amp; Professional</span>
+
+<span class="card-cta">View Collection</span>
+
+</div>
+
+</div>
+
+</a>
+
+<a href="lm-harwood.html" class="author-card">
+
+<div class="card-bg card-bg-harwood"></div>
+
+<div class="card-overlay"></div>
+
+<div class="card-content">
+
+<h2 class="card-name"></h2>
+
+<div class="card-bottom">
+
+<span class="card-genre">Non-Fiction &amp; Self Help</span>
+
+<span class="card-cta">View Collection</span>
+
+</div>
+
+</div>
+
+</a>
+
+</div>
+
+<!-- Row 2: Romance, Linda Maree, David Scott, Free Downloads -->
+
+<div class="row-bottom">
+
+<a href="linda-maree-romance.html" class="author-card">
+<div class="card-bg card-bg-romance"></div>
+<div class="card-overlay"></div>
+<div class="card-content">
+<h2 class="card-name"></h2>
+<div class="card-bottom">
+<span class="card-genre">Romance · Linda Maree</span>
+<span class="card-cta">View Collection</span>
+</div>
+</div>
+</a>
+
+<a href="linda-maree.html" class="author-card">
+
+<div class="card-bg card-bg-maree"></div>
+
+<div class="card-overlay"></div>
+
+<div class="card-content">
+
+<h2 class="card-name"></h2>
+
+<div class="card-bottom">
+
+<span class="card-genre">Puzzles · Children's · Fiction</span>
+
+<span class="card-cta">View Collection</span>
+
+</div>
+
+</div>
+
+</a>
+
+<a href="david-scott.html" class="author-card">
+
+<div class="card-bg card-bg-scott"></div>
+
+<div class="card-overlay"></div>
+
+<div class="card-content">
+
+<h2 class="card-name"></h2>
+
+<div class="card-bottom">
+
+<span class="card-genre">Reimagined Classics</span>
+
+<span class="card-cta">View Collection</span>
+
+</div>
+
+</div>
+
+</a>
+
+<a href="free-downloads.html" class="author-card">
+
+<div class="card-bg card-bg-free"></div>
+
+<div class="card-overlay"></div>
+
+<div class="card-content">
+
+<h2 class="card-name"></h2>
+
+<div class="card-bottom">
+
+<span class="card-genre">Free Downloads &amp; Articles</span>
+
+<span class="card-cta">Download Free</span>
+
+</div>
+
+</div>
+
+</a>
+
+</div>
 
 </section>
 
 <footer>
-    <div class="footer-name">L.M. Harwood</div>
-    <p>&copy; 2025 L.M. Harwood. All rights reserved.</p>
-    <p style="margin-top:8px"><a href="mailto:lindaharwood123@gmail.com">Contact Me</a></p>
+
+<div class="footer-name">L.M. Harwood</div>
+
+<p>&copy; 2025 L.M. Harwood. All rights reserved.</p>
+
+<p style="margin-top:8px"><a
+href="mailto:lindaharwood123@gmail.com">Contact Me</a></p>
+
 </footer>
 
 </body>
+
 </html>
